@@ -118,12 +118,12 @@ export default function Home() {
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span>Delta Traders • Maduranthagam • {activePersona.tag}</span>
+                <span>Delta Traders • {activePersona.tag}</span>
               </div>
 
               {/* Main H1 incorporating Search Terms */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif text-slate-50 leading-tight">
-                Wholesale Groceries, Food Essentials & Packaging Supplies in Maduranthagam
+                Your Everyday Essentials, All in One Place.
               </h1>
 
               <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">

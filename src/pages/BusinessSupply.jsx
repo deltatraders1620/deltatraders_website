@@ -110,7 +110,7 @@ export default function BusinessSupply() {
             <span>Wholesale & Commercial Accounts</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-serif text-slate-900 dark:text-white leading-tight">
-            Wholesale Groceries & Hotel Kitchen Supplies in Maduranthagam
+            Reliable Supply Support for Your Business
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
             Delta Traders welcomes commercial supply enquiries from hotels, restaurants, wedding caterers, supermarkets, and institutions across Maduranthagam and Chengalpattu District. Bulk rice sacks, cooking oils, whole spices, dry fruits, and packaging supplies delivered with direct trade pricing.
