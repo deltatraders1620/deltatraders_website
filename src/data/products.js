@@ -1124,8 +1124,8 @@ export const COMPANY_INFO = {
   legalName: 'DELTA TRADERS',
   tagline: 'Your Everyday Essentials, All in One Place.',
   website: 'https://deltatraders.net',
-  address: 'No:33, erisairam nagar, kadaperi, Madurantagam (Maduranthagam) - 603306',
-  fullAddress: 'No:33, erisairam nagar, kadaperi, Madurantagam (Maduranthagam) - 603306, Chengalpattu District, Tamil Nadu, India.',
+  address: 'No:33, erisairam nagar, kadaperi, Maduranthagam - 603306',
+  fullAddress: 'No:33, erisairam nagar, kadaperi, Maduranthagam - 603306, Chengalpattu District, Tamil Nadu, India.',
   gstin: '33DDZPG1776CIZD',
   fssai: '22426068000958',
   udyam: 'UDYAM-TN-34-0119318',
@@ -1138,5 +1138,5 @@ export const COMPANY_INFO = {
   primaryPhoneFormatted: '+91 86680 54308',
   email: 'deltatraders.1620@gmail.com',
   hours: 'Monday to Saturday (9:00 AM to 7:00 PM)',
-  serviceArea: 'Madurantagam, Maduranthagam, Chengalpattu District & Surrounding Areas (Tamil Nadu)'
+  serviceArea: 'Maduranthagam, Chengalpattu District & Surrounding Areas (Tamil Nadu)'
 };
