@@ -105,13 +105,13 @@ export default function Contact() {
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950/70 border border-cyan-300 dark:border-cyan-800 text-cyan-800 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
             <Phone className="w-3.5 h-3.5" />
-            <span>Maduranthagam & Chengalpattu Trade Desk</span>
+            <span>Madurantagam & Maduranthagam Trade Desk</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-serif text-slate-900 dark:text-white leading-tight">
-            Contact Delta Traders
+            Contact Delta Traders — Madurantagam Wholesale Depot
           </h1>
           <p className="text-base text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
-            We’re here to help! Whether you need everyday retail groceries, bulk supplies for hotels and restaurants, wedding catering provisions, parcel packaging materials, or office stationery—connect with our team directly.
+            We’re here to help! Whether you need everyday groceries, bulk supplies for hotels, wedding catering provisions, parcel packaging materials, or office stationery in Madurantagam, Maduranthagam, and Chengalpattu District—connect with our team directly.
           </p>
         </div>
 

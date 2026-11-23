@@ -29,7 +29,7 @@ export default function Footer() {
             </div>
 
             <p className="text-slate-400 leading-relaxed text-xs">
-              Delta Traders brings groceries, food essentials, stationery, parcel and packaging supplies together for households, retailers, hotels, restaurants, caterers, and other businesses across Maduranthagam and Chengalpattu District.
+              Delta Traders brings groceries, food essentials, stationery, parcel and packaging supplies together for households, retailers, hotels, restaurants, caterers, and wedding events across Madurantagam, Maduranthagam and Chengalpattu District.
             </p>
 
             {/* Official Registration Badges */}

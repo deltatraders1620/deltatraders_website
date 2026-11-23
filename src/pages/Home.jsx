@@ -118,16 +118,16 @@ export default function Home() {
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span>Delta Traders • Maduranthagam • {activePersona.tag}</span>
+                <span>Delta Traders • Madurantagam & Maduranthagam • {activePersona.tag}</span>
               </div>
 
               {/* Main H1 incorporating Search Terms */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif text-slate-50 leading-tight">
-                Your Everyday Essentials, All in One Place.
+                Wholesale Groceries, Food Essentials & Packaging Supplies in Madurantagam
               </h1>
 
               <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-                Delta Traders brings groceries, food essentials, stationery, parcel and packaging supplies together for households, retailers, hotels, restaurants, caterers, and other businesses. Shop for everyday needs or source products in bulk—with convenient ordering and dependable service.
+                Delta Traders in Madurantagam (Maduranthagam) brings bulk rice, high-yield dals, cooking oil boxes, whole spices, dry fruits, and food packaging materials together for households, retailers, hotels, restaurants, and wedding caterers across Chengalpattu District. Factory-direct wholesale value with door-to-door morning delivery.
               </p>
 
               {/* Primary & Secondary Buttons as per Spec */}

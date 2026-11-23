@@ -20,7 +20,7 @@ export default function Shop() {
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
-            Browse our full catalog across 8 categories: food grains, dals, whole spices, masalas, cooking oils, dry fruits, disposable aluminium containers, meal boxes, wrapping sheets, and office stationery. Retail packs and bulk lots available with delivery in Maduranthagam & Chengalpattu District.
+            Browse our full catalog across 8 categories: food grains, dals, whole spices, masalas, cooking oils, dry fruits, disposable aluminium containers, meal boxes, wrapping sheets, and office stationery. Retail packs and bulk lots available with delivery across Madurantagam, Maduranthagam & Chengalpattu District.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-slate-300">
