@@ -3,19 +3,21 @@ import { Building2, Utensils, Store, Briefcase, Truck, ShieldCheck, MessageCircl
 import { COMPANY_INFO } from '../data/products';
 import { sendEmailEnquiry, getGmailWebUrl } from '../utils/emailService';
 
+const initialBusinessForm = {
+  businessName: '',
+  contactPerson: '',
+  phone: '',
+  email: '',
+  businessType: 'Hotel / Restaurant Kitchen',
+  productsList: '',
+  quantities: '',
+  location: '',
+  frequency: 'Weekly Recurring Supply',
+  notes: ''
+};
+
 export default function BusinessSupply() {
-  const [form, setForm] = useState({
-    businessName: '',
-    contactPerson: '',
-    phone: '',
-    email: '',
-    businessType: 'Hotel / Restaurant Kitchen',
-    productsList: '',
-    quantities: '',
-    location: 'Maduranthagam / Chengalpattu District',
-    frequency: 'Weekly Recurring Supply',
-    notes: ''
-  });
+  const [form, setForm] = useState(initialBusinessForm);
 
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState(null); // { type: 'success' | 'fallback', gmailUrl: '', mailtoUrl: '' }
@@ -29,7 +31,7 @@ export default function BusinessSupply() {
     msg += `Phone: ${form.phone}\n`;
     msg += `Email: ${form.email || 'Not provided'}\n`;
     msg += `Business Type: ${form.businessType}\n`;
-    msg += `Delivery Location: ${form.location}\n`;
+    msg += `Delivery Location: ${form.location || 'Maduranthagam / Chengalpattu'}\n`;
     msg += `Delivery Frequency: ${form.frequency}\n`;
     msg += `------------------------------------\n`;
     msg += `*Requested Items & Quantities:*\n`;
@@ -54,6 +56,8 @@ export default function BusinessSupply() {
     const text = encodeURIComponent(getFormattedText());
     window.open(`https://wa.me/91${COMPANY_INFO.primaryPhone}?text=${text}`, '_blank');
     setSubmittedMethod('whatsapp');
+    // Clear all form inputs
+    setForm(initialBusinessForm);
   };
 
   const handleEmail = async (e) => {
@@ -72,7 +76,7 @@ export default function BusinessSupply() {
       phone: form.phone,
       email: form.email,
       businessType: form.businessType,
-      location: form.location,
+      location: form.location || 'Maduranthagam / Chengalpattu District',
       frequency: form.frequency,
       productsList: form.productsList,
       quantities: form.quantities,
@@ -81,6 +85,8 @@ export default function BusinessSupply() {
 
     setIsSendingEmail(false);
     setSubmittedMethod('email');
+    // Clear all form inputs
+    setForm(initialBusinessForm);
 
     if (result.success) {
       setEmailStatus({ type: 'success' });
@@ -224,14 +230,27 @@ export default function BusinessSupply() {
               </p>
             </div>
 
+            {/* WhatsApp Status Alert */}
+            {submittedMethod === 'whatsapp' && (
+              <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 flex items-start gap-3 text-xs leading-relaxed">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-sm">WhatsApp Chat Launched & Form Cleared!</strong>
+                  <p className="mt-0.5">
+                    Your bulk requirements were forwarded to our WhatsApp Desk (<strong>+91 {COMPANY_INFO.primaryPhone}</strong>). All input fields have been cleared for your next message.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Email Status Notifications */}
             {emailStatus?.type === 'success' && (
               <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 flex items-start gap-3 text-xs leading-relaxed">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-sm">Enquiry Email Delivered!</strong>
+                  <strong className="text-sm">Enquiry Email Delivered & Form Cleared!</strong>
                   <p className="mt-0.5">
-                    Your bulk requirements were sent directly to <strong>{COMPANY_INFO.email}</strong>. Our team will review availability and get back to you during business hours (9am to 7pm).
+                    Your bulk requirements were sent directly to <strong>{COMPANY_INFO.email}</strong>. All input fields have been cleared. Our team will review and get back to you promptly.
                   </p>
                 </div>
               </div>

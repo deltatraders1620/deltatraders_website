@@ -16,14 +16,16 @@ export default function RfqDrawer() {
     createWhatsAppUrl,
   } = useRfq();
 
-  const [customer, setCustomer] = useState({
+  const initialCustomerState = {
     name: '',
     phone: '',
     email: '',
     businessType: 'Hotel / Restaurant Supply',
     location: 'Maduranthagam / Chengalpattu District',
     notes: '',
-  });
+  };
+
+  const [customer, setCustomer] = useState(initialCustomerState);
 
   const [submittedMethod, setSubmittedMethod] = useState(null);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
@@ -36,6 +38,8 @@ export default function RfqDrawer() {
     const url = createWhatsAppUrl(customer);
     window.open(url, '_blank');
     setSubmittedMethod('whatsapp');
+    setCustomer(initialCustomerState);
+    clearCart();
     setTimeout(() => setSubmittedMethod(null), 5000);
   };
 
@@ -62,6 +66,8 @@ export default function RfqDrawer() {
 
     setIsSendingEmail(false);
     setSubmittedMethod('email');
+    setCustomer(initialCustomerState);
+    clearCart();
 
     if (result.success) {
       setEmailStatus({ type: 'success' });

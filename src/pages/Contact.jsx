@@ -3,6 +3,16 @@ import { Phone, Mail, MapPin, Send, MessageCircle, Check, ShieldCheck, Clock, Bu
 import { COMPANY_INFO } from '../data/products';
 import { sendEmailEnquiry } from '../utils/emailService';
 
+const initialFormData = {
+  name: '',
+  phone: '',
+  email: '',
+  subject: 'Wholesale & Bulk Supply Enquiry',
+  businessType: 'Hotel / Restaurant Kitchen',
+  location: '',
+  message: '',
+};
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [lastSubmittedMode, setLastSubmittedMode] = useState('');
@@ -10,15 +20,7 @@ export default function Contact() {
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState(null);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    subject: 'Wholesale & Bulk Supply Enquiry',
-    businessType: 'Hotel / Restaurant Kitchen',
-    location: 'Maduranthagam / Chengalpattu Dist',
-    message: '',
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText(COMPANY_INFO.primaryPhone);
@@ -33,7 +35,7 @@ export default function Contact() {
     msg += `Email: ${formData.email || 'Not provided'}\n`;
     msg += `Enquiry Type: ${formData.subject}\n`;
     msg += `Business Type: ${formData.businessType}\n`;
-    msg += `Location: ${formData.location}\n`;
+    msg += `Location: ${formData.location || 'Maduranthagam / Chengalpattu'}\n`;
     if (formData.message) {
       msg += `Details / Items: ${formData.message}\n`;
     }
@@ -53,6 +55,8 @@ export default function Contact() {
     window.open(url, '_blank');
     setLastSubmittedMode('WhatsApp');
     setSubmitted(true);
+    // Clear all fields immediately
+    setFormData(initialFormData);
   };
 
   const handleEmailSubmit = async (e) => {
@@ -71,13 +75,16 @@ export default function Contact() {
       email: formData.email,
       subject: formData.subject,
       businessType: formData.businessType,
-      location: formData.location,
+      location: formData.location || 'Maduranthagam / Chengalpattu Dist',
       message: formData.message,
     }, formData.subject);
 
     setIsSendingEmail(false);
     setLastSubmittedMode('Email');
     setSubmitted(true);
+
+    // Clear all fields immediately
+    setFormData(initialFormData);
 
     if (result.success) {
       setEmailStatus({ type: 'success' });
@@ -248,14 +255,27 @@ export default function Contact() {
               </p>
             </div>
 
+            {/* WhatsApp Submitted Alert */}
+            {submitted && lastSubmittedMode === 'WhatsApp' && (
+              <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 flex items-start gap-3 text-xs leading-relaxed">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-sm">WhatsApp Chat Launched & Form Cleared!</strong>
+                  <p className="mt-0.5">
+                    Your enquiry details were sent to WhatsApp Desk (<strong>+91 {COMPANY_INFO.primaryPhone}</strong>). All input fields have been cleared for your next message.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Email Status Alert */}
             {emailStatus?.type === 'success' && (
               <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 flex items-start gap-3 text-xs leading-relaxed">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-sm">Enquiry Email Delivered!</strong>
+                  <strong className="text-sm">Enquiry Email Delivered & Form Cleared!</strong>
                   <p className="mt-0.5">
-                    Your message was sent directly to <strong>{COMPANY_INFO.email}</strong>. Our team will respond during business hours (9am to 7pm).
+                    Your message was sent directly to <strong>{COMPANY_INFO.email}</strong>. All input fields have been cleared. Our team will respond during business hours (9am to 7pm).
                   </p>
                 </div>
               </div>

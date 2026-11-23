@@ -175,7 +175,7 @@ export default function CatalogSection({ initialCategory = 'all' }) {
           <div
             className="flex items-center gap-3 w-max py-2 select-none"
             style={{
-              animation: 'marqueeRtl 36s linear infinite',
+              animation: 'marqueeRtl 45s linear infinite',
               animationPlayState: isMarqueePaused || isHovered ? 'paused' : 'running',
             }}
           >
