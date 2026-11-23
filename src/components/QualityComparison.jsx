@@ -6,220 +6,190 @@ export default function QualityComparison() {
 
   const COMPARISONS = {
     grain: {
-      title: 'Sortex Grain Integrity & Broken Grain Ratio',
-      subtitle: 'Why commercial chefs choose Delta Traders for consistent grain elongation.',
+      title: 'Sortex Optical Grain Grading & Yield',
+      subtitle: 'Why commercial chefs and hotels choose Delta Traders for consistent culinary yield.',
       delta: {
-        heading: 'Delta Traders Direct Mill Standard',
+        heading: 'Delta Traders Direct Standard',
         points: [
-          'Under 0.5% broken grains through Japanese Buhler Sortex optical graders.',
+          'High purity optical grading removing discolored kernels and stones.',
           'Zero yellow/black diseased grains or unhusked paddy kernels.',
-          'Aged for minimum 12 months for 2.5x volume elongation upon cooking.',
-          'Machine-destoned with zero residual silica or grit.',
+          'Consistent grain elongation upon cooking for tender rotis and fluffy rice.',
+          'Cleaned, dry food staples with verified moisture limits.',
         ],
         image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80',
-        badge: '100% Sortex Cleaned',
+        badge: 'Graded & Cleaned Lots',
       },
       traditional: {
-        heading: 'Traditional Mandi / Broker Mixed Lots',
+        heading: 'Typical Mandi / Mixed Broker Lots',
         points: [
-          '8% to 14% broken grains mixed in to reduce merchant wholesale cost.',
-          'Paddy husks and discolored kernels require manual hand-sorting.',
-          'Freshly harvested moist paddy that turns soggy and sticky in biryani.',
-          'Residual dust and small stones ruin kitchen reputation.',
+          'Unscreened broken grain mixed in to dilute wholesale cost.',
+          'Paddy husks and discolored kernels requiring manual cleaning.',
+          'Excessive moisture that causes grain clumping and mould risk.',
+          'Residual grit and dust leading to culinary batch failure.',
         ],
         badge: 'Unsorted Mixed Batches',
       },
     },
     weight: {
-      title: 'Electronic Weighbridge Calibration Guarantee',
-      subtitle: 'Eliminating the chronic 1.5kg-per-bag shortage prevalent in wholesale mandis.',
+      title: 'Digital Weighment & Tare Integrity',
+      subtitle: 'Eliminating the chronic tare shortage common in roadside wholesale mandis.',
       delta: {
-        heading: 'Computerized Weighbridge Certification',
+        heading: 'Accurate Weighment Certification',
         points: [
-          'Every 25kg, 30kg, and 50kg bag is weighed on certified digital sensors.',
-          'Printed computerized weighment slip attached to the invoice.',
-          'Zero moisture inflation or artificial water spraying.',
-          '100% money-back or bag replacement guarantee on weight mismatch.',
+          'Every bag and container lot is verified on calibrated digital scales.',
+          'Official GST tax invoice itemizing exact net weights and pack quantities.',
+          'Zero artificial water spraying or moisture weight cheating.',
+          'Prompt resolution and exchange on any dispatch discrepancy.',
         ],
         image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80',
-        badge: 'Tare-Calibrated Digital Slip',
+        badge: '100% Net Weight Verified',
       },
       traditional: {
-        heading: 'Typical Broker / Sub-Dealer Weighment',
+        heading: 'Typical Broker Weighment Practice',
         points: [
-          'Frequent 1.5kg to 2kg shortage per 50kg bag due to manual balance error.',
-          'Jute bag tare weight often counted as commodity weight.',
-          'Water misted on rice and dal to artificially inflate scale weight.',
-          'No dispute resolution once lorry departs wholesale mandi.',
+          'Frequent shortage per 50kg sack due to tare miscalculations.',
+          'Heavy burlap bag weight counted as commodity weight.',
+          'Water misted on rice and pulses to artificially increase sack mass.',
+          'No dispute resolution once lorry departs wholesale trading floor.',
         ],
-        badge: 'Manual Counter-Weight Scales',
+        badge: 'Manual Beam Balances',
       },
     },
-    packing: {
-      title: 'Tamper-Evident Food-Grade Bagging & Tins',
-      subtitle: 'Preserving freshness and preventing transit contamination.',
+    packaging: {
+      title: 'Food-Grade Containers & Parcel Protection',
+      subtitle: 'Heavy-gauge aluminium containers and food-grade packaging materials.',
       delta: {
-        heading: 'Machine-Stitched Virgin Polymer Bags & Sealed Tins',
+        heading: 'Delta Traders Packaging Grade',
         points: [
-          'Food-grade virgin HDPE/BOPP laminated moisture barrier sacks.',
-          'Color-coded serialized security seal on high-value basmati & cashew crates.',
-          '15L cooking oils delivered in factory-sealed virgin tin containers.',
-          'Pest-free dry depot warehousing with weekly fumigation certification.',
+          'Rigid aluminium containers (250ml, 450ml, 750ml) with snap-fit gray lids.',
+          'Bio-compostable eco cups resistant to hot liquids and soups.',
+          'Heavy-gauge silver rolls and foil pouches that prevent grease leakage.',
+          'Moisture-barrier bag stitching protecting dry grains in humid weather.',
         ],
-        image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
-        badge: 'Moisture Barrier BOPP Packaging',
+        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80',
+        badge: 'Food Safe Certified',
       },
       traditional: {
-        heading: 'Second-Hand Recycled Sacks & Refilled Tins',
+        heading: 'Sub-Standard Packaging',
         points: [
-          'Re-stitched second-hand fertilizer or chemical sacks prone to tearing.',
-          'Oil tins often refilled from loose tanker barrels without seal integrity.',
-          'Exposure to rain, humidity, and damp floor storage during multi-mandi transit.',
-          'Weevil infestation within 7 days of delivery.',
+          'Thin aluminium sheets that crush under parcel delivery transit.',
+          'Loose-fitting container lids causing gravy and sambar leakage.',
+          'Low-micron plastic bags prone to tearing and transit contamination.',
+          'Inconsistent cup wall thickness that collapses with hot beverages.',
         ],
-        badge: 'Recycled Jute / Loose Barrels',
+        badge: 'Uncertified Flimsy Packaging',
       },
     },
   };
 
-  const cur = COMPARISONS[activeTab];
+  const current = COMPARISONS[activeTab];
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div className="text-center max-w-3xl mx-auto space-y-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
-          Factory QC Lab Standards
+    <section className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+      <div className="text-center max-w-2xl mx-auto space-y-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/70 px-3 py-1 rounded-full border border-cyan-300 dark:border-cyan-800">
+          Quality & Integrity
         </span>
-        <h2 className="text-3xl font-extrabold font-serif text-slate-900">
-          Direct Mill Standards vs Mandi Broker Middlemen
+        <h2 className="text-3xl font-extrabold font-serif text-slate-900 dark:text-white">
+          Why Quality Standards Matter
         </h2>
-        <p className="text-xs text-slate-600">
-          See the tangible differences in grain purity, weighment honesty, and packaging durability.
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Compare our direct-sourced, calibrated food supplies and sturdy packaging with ordinary market alternatives.
         </p>
       </div>
 
       {/* Tabs */}
       <div className="flex justify-center">
-        <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200 max-w-full overflow-x-auto">
+        <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 max-w-full overflow-x-auto shadow-sm">
           <button
             onClick={() => setActiveTab('grain')}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
               activeTab === 'grain'
-                ? 'bg-navy-900 text-cyan-300 shadow-md border border-cyan-500/30'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span>01. Grain Purity & Sortex Grading</span>
+            🌾 Grain Purity & Sortex
           </button>
           <button
             onClick={() => setActiveTab('weight')}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
               activeTab === 'weight'
-                ? 'bg-navy-900 text-amber-300 shadow-md border border-amber-500/30'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <Scale className="w-4 h-4 text-amber-400" />
-            <span>02. Digital Weighment Slip</span>
+            ⚖️ Weighbridge Calibration
           </button>
           <button
-            onClick={() => setActiveTab('packing')}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'packing'
-                ? 'bg-navy-900 text-emerald-300 shadow-md border border-emerald-500/30'
-                : 'text-slate-600 hover:text-slate-900'
+            onClick={() => setActiveTab('packaging')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              activeTab === 'packaging'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>03. Tamper-Proof Packaging</span>
+            📦 Food-Grade Packaging
           </button>
         </div>
       </div>
 
-      {/* Side-by-Side Comparison Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      {/* Two-Column Comparison Card */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Delta Traders Card */}
-        <div className="rounded-3xl border-2 border-brand-500 bg-white p-7 shadow-xl space-y-5 flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-extrabold uppercase bg-brand-50 text-brand-800 border border-brand-200 px-3 py-1 rounded-full">
-                {cur.delta.badge}
-              </span>
-              <span className="text-cyan-600 text-xs font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4 text-cyan-500" /> Guaranteed Quality
-              </span>
-            </div>
-
-            <h3 className="text-xl font-bold font-serif text-brand-950">
-              {cur.delta.heading}
-            </h3>
-
-            <div className="h-44 w-full rounded-2xl overflow-hidden bg-slate-100 relative">
-              <img
-                src={cur.delta.image}
-                alt="Delta Traders Quality"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-3 left-3 text-white text-xs font-bold">
-                ✓ Laboratory Grade Verified
-              </div>
-            </div>
-
-            <ul className="space-y-2.5 text-xs text-slate-700">
-              {cur.delta.points.map((pt, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border-2 border-cyan-500/50 shadow-xl space-y-6 relative overflow-hidden">
+          <div className="flex items-center justify-between">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 dark:bg-cyan-950/80 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">
+              {current.delta.badge}
+            </span>
+            <ShieldCheck className="w-5 h-5 text-emerald-500" />
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-brand-800 font-bold">
-            <span>Result: High Kitchen Yield & Zero Waste</span>
-            <span className="text-amber-400 font-extrabold tracking-widest text-sm">★★★★★</span>
+          <div>
+            <h3 className="text-xl font-bold font-serif text-slate-900 dark:text-white">
+              {current.delta.heading}
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              {current.subtitle}
+            </p>
+          </div>
+
+          <div className="space-y-3 pt-2">
+            {current.delta.points.map((pt, i) => (
+              <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                <span>{pt}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Traditional Broker Card */}
-        <div className="rounded-3xl border border-red-200 bg-red-50/30 p-7 space-y-5 flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-extrabold uppercase bg-red-100 text-red-800 border border-red-200 px-3 py-1 rounded-full">
-                {cur.traditional.badge}
-              </span>
-              <span className="text-red-600 text-xs font-bold flex items-center gap-1">
-                <XCircle className="w-4 h-4" /> Broker Markup Risk
-              </span>
-            </div>
-
-            <h3 className="text-xl font-bold font-serif text-slate-900">
-              {cur.traditional.heading}
-            </h3>
-
-            <div className="h-44 w-full rounded-2xl overflow-hidden bg-slate-200 relative flex items-center justify-center text-slate-400 p-4 text-center">
-              <div className="space-y-1">
-                <div className="text-sm font-bold text-slate-600">Middleman Supply Chain</div>
-                <div className="text-xs text-slate-500">4 Intermediary Hand-offs • No Weighment Slips</div>
-              </div>
-            </div>
-
-            <ul className="space-y-2.5 text-xs text-slate-700">
-              {cur.traditional.points.map((pt, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
+        {/* Traditional Market Card */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6 relative">
+          <div className="flex items-center justify-between">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+              {current.traditional.badge}
+            </span>
+            <XCircle className="w-5 h-5 text-rose-400" />
           </div>
 
-          <div className="pt-4 border-t border-red-100 flex items-center justify-between text-xs text-red-700 font-bold">
-            <span>Result: Inflated Cost & Cook Dissatisfaction</span>
-            <span className="text-slate-400">✕ Avoidable Loss</span>
+          <div>
+            <h3 className="text-xl font-bold font-serif text-slate-700 dark:text-slate-300">
+              {current.traditional.heading}
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+              Common issues observed in speculative wholesale lots
+            </p>
+          </div>
+
+          <div className="space-y-3 pt-2">
+            {current.traditional.points.map((pt, i) => (
+              <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <XCircle className="w-4 h-4 text-rose-400/80 flex-shrink-0 mt-0.5" />
+                <span>{pt}</span>
+              </div>
+            ))}
           </div>
         </div>
 

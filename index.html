@@ -3,15 +3,129 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delta Traders | Direct Mill Wholesale Groceries</title>
-    <!-- Google Fonts -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Delta Traders | Wholesale Groceries, Wedding & Hotel Kitchen Supplies | Maduranthagam, Chengalpattu</title>
+    <meta name="title" content="Delta Traders | Wholesale Groceries, Wedding & Hotel Kitchen Supplies | Maduranthagam, Chengalpattu" />
+    <meta name="description" content="Delta Traders brings wholesale groceries, food essentials, hotel kitchen supplies, stationery, parcel and packaging materials together for households, retailers, hotels, restaurants, and wedding caterers in Maduranthagam and Chengalpattu District. Contact +91 8668054308." />
+    <meta name="keywords" content="Delta Traders, wholesale groceries, wedding grocery supply, hotel kitchen supplies, food essentials, packaging materials, Maduranthagam groceries, Chengalpattu wholesale, aluminium container wholesale, hotel provision store, wedding banquet groceries, toor dal wholesale, cooking oil tins wholesale" />
+    <meta name="author" content="Delta Traders" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://deltatraders.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:url" content="https://deltatraders.com/" />
+    <meta property="og:title" content="Delta Traders | Wholesale Groceries & Hotel Kitchen Supplies" />
+    <meta property="og:description" content="Wholesale supply of food essentials, groceries, hotel packaging materials, and wedding banquet provisions in Maduranthagam & Chengalpattu District." />
+    <meta property="og:image" content="/logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://deltatraders.com/" />
+    <meta property="twitter:title" content="Delta Traders | Wholesale Groceries & Hotel Kitchen Supplies" />
+    <meta property="twitter:description" content="Your everyday essentials and wholesale supply partner in Maduranthagam, Chengalpattu. WhatsApp: 8668054308." />
+    <meta property="twitter:image" content="/logo.png" />
+
+    <!-- Google Fonts - Sleek, Modern, High-End Corporate Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Dark Mode Initializer -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('delta_theme');
+          var isDark = saved ? saved === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Structured Data (JSON-LD) for LocalBusiness & WholesaleStore -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WholesaleStore",
+      "@id": "https://deltatraders.com/#organization",
+      "name": "Delta Traders",
+      "legalName": "DELTA TRADERS",
+      "url": "https://deltatraders.com",
+      "logo": "https://deltatraders.com/logo.png",
+      "image": "https://deltatraders.com/logo.png",
+      "description": "Delta Traders is a wholesale and retail supply business focused on groceries, food essentials, stationery, parcel and packaging materials for households, retailers, hotels, restaurants, and caterers in Maduranthagam, Chengalpattu District.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No:33, erisairam nagar, kadaperi",
+        "addressLocality": "Maduranthagam",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "603306",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.4332,
+        "longitude": 79.8824
+      },
+      "telephone": "+918668054308",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+918668054308",
+          "contactType": "customer service",
+          "availableLanguage": ["Tamil", "English"],
+          "areaServed": "Chengalpattu District"
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+916383595914",
+          "contactType": "sales",
+          "availableLanguage": ["Tamil", "English"]
+        }
+      ],
+      "email": "deltatraders.1620@gmail.com",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, UPI, Cheque, Bank Transfer",
+      "taxID": "33DDZPG1776CIZD",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "FSSAI",
+        "value": "22426068000958"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Chengalpattu District"
+      }
+    }
+    </script>
+
     <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -88,7 +202,7 @@
       }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-800 antialiased font-sans">
+  <body class="bg-slate-50 dark:bg-navy-950 text-slate-800 dark:text-slate-100 antialiased font-sans transition-colors duration-200">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,312 +1,455 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, MessageSquare, Check, ShieldCheck, Clock, Building2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, MessageCircle, Check, ShieldCheck, Clock, Building2, CheckCircle2, Copy, Loader2, ExternalLink } from 'lucide-react';
+import { COMPANY_INFO } from '../data/products';
+import { sendEmailEnquiry } from '../utils/emailService';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [lastSubmittedMode, setLastSubmittedMode] = useState('');
+  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailStatus, setEmailStatus] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    businessName: '',
-    type: 'Wedding & Banquet Provisioning',
-    hub: 'Chennai (Koyambedu / City Center)',
-    selectedPills: ['Deluxe Ponni Rice', 'Cooking Oil Tins'],
-    details: '',
+    email: '',
+    subject: 'Wholesale & Bulk Supply Enquiry',
+    businessType: 'Hotel / Restaurant Kitchen',
+    location: 'Maduranthagam / Chengalpattu Dist',
+    message: '',
   });
 
-  const COMMODITY_PILLS = [
-    'Deluxe Ponni Rice (25kg/50kg)',
-    'Royal 1121 Basmati (25kg)',
-    'First Quality Toor Dal (50kg)',
-    'Bold White Urad Gota (30kg)',
-    'Refined Sunflower Oil (15L Tins)',
-    'Cold-Pressed Groundnut Oil (15L)',
-    'Banquet Cashews W240 (10kg)',
-    'Salem Finger Turmeric (25kg)',
-    'M-30 Cane Sugar (50kg)',
-    'Chakki Fresh Atta (50kg)',
-  ];
-
-  const togglePill = (pill) => {
-    setFormData((prev) => {
-      const exists = prev.selectedPills.includes(pill);
-      return {
-        ...prev,
-        selectedPills: exists
-          ? prev.selectedPills.filter((p) => p !== pill)
-          : [...prev.selectedPills, pill],
-      };
-    });
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(COMPANY_INFO.primaryPhone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 8000);
-  };
-
-  const handleWhatsAppSend = () => {
-    let msg = `*DELTA TRADERS — WHOLESALE RFQ INQUIRY*\n`;
-    msg += `Name: ${formData.name || 'Trade Buyer'}\n`;
-    msg += `Business: ${formData.businessName || 'Commercial Kitchen'}\n`;
-    msg += `Phone: ${formData.phone}\n`;
-    msg += `Order Type: ${formData.type}\n`;
-    msg += `Delivery Hub: ${formData.hub}\n`;
-    if (formData.selectedPills.length > 0) {
-      msg += `Items Needed: ${formData.selectedPills.join(', ')}\n`;
-    }
-    if (formData.details) {
-      msg += `Quantities/Notes: ${formData.details}\n`;
+  const constructMessageText = () => {
+    let msg = `*DELTA TRADERS — ENQUIRY*\n`;
+    msg += `Name: ${formData.name || 'Not provided'}\n`;
+    msg += `Phone: ${formData.phone || 'Not provided'}\n`;
+    msg += `Email: ${formData.email || 'Not provided'}\n`;
+    msg += `Enquiry Type: ${formData.subject}\n`;
+    msg += `Business Type: ${formData.businessType}\n`;
+    msg += `Location: ${formData.location}\n`;
+    if (formData.message) {
+      msg += `Details / Items: ${formData.message}\n`;
     }
     msg += `------------------------------------\n`;
-    msg += `Please reply with mill-direct wholesale rates and delivery availability.`;
+    msg += `Sent via Delta Traders Website`;
+    return msg;
+  };
 
-    window.open(`https://wa.me/919087752120?text=${encodeURIComponent(msg)}`, '_blank');
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name && !formData.phone) {
+      alert('Please enter at least your name and phone number.');
+      return;
+    }
+    const msg = constructMessageText();
+    const url = `https://wa.me/91${COMPANY_INFO.primaryPhone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    setLastSubmittedMode('WhatsApp');
+    setSubmitted(true);
+  };
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name && !formData.phone && !formData.email) {
+      alert('Please enter your name and contact details (phone or email).');
+      return;
+    }
+
+    setIsSendingEmail(true);
+    setEmailStatus(null);
+
+    const result = await sendEmailEnquiry({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      subject: formData.subject,
+      businessType: formData.businessType,
+      location: formData.location,
+      message: formData.message,
+    }, formData.subject);
+
+    setIsSendingEmail(false);
+    setLastSubmittedMode('Email');
+    setSubmitted(true);
+
+    if (result.success) {
+      setEmailStatus({ type: 'success' });
+    } else {
+      setEmailStatus({
+        type: 'fallback',
+        gmailUrl: result.gmailUrl,
+        mailtoUrl: result.mailtoUrl
+      });
+    }
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-      
-      {/* Header */}
-      <div className="max-w-3xl space-y-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
-          Wholesale Trade Desk & RFQ
-        </span>
-        <h1 className="text-4xl sm:text-5xl font-extrabold font-serif text-slate-900 leading-tight">
-          Request Factory-Direct Quotation
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Reach our central trading hub directly. Submit your estimated commodity lot requirements for immediate invoice quotation and dispatch slot booking.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 py-12">
+      <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
         
-        {/* Left Column: Depot Information & Visuals */}
-        <div className="lg:col-span-5 space-y-6">
-          
-          {/* Visual Depot Card */}
-          <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-900">
-            <img
-              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
-              alt="Delta Traders Wholesale Commodity Depot"
-              className="w-full h-48 object-cover opacity-80"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300 bg-black/60 px-2.5 py-1 rounded">
-                Central Trade Depot
-              </span>
-              <h4 className="text-base font-bold font-serif">Koyambedu Wholesale Corridor</h4>
-              <p className="text-[11px] text-slate-300">40+ Tons Buffer Reserves • Digital Weighbridge</p>
-            </div>
+        {/* Header - Expansive width container */}
+        <div className="space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950/70 border border-cyan-300 dark:border-cyan-800 text-cyan-800 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
+            <Phone className="w-3.5 h-3.5" />
+            <span>Maduranthagam & Chengalpattu Trade Desk</span>
           </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-sm">
-            <div className="flex items-center gap-2 text-brand-700 font-bold text-xs uppercase">
-              <Phone className="w-4 h-4" />
-              <span>Direct Hotline & WhatsApp Desk</span>
-            </div>
-            <div className="text-2xl font-extrabold text-slate-900 font-mono">+91 90877 52120</div>
-            <p className="text-xs text-slate-500">
-              Desk hours: Mon – Sat (6:00 AM – 9:00 PM) for immediate quotes and dispatch confirmations.
-            </p>
-            <a
-              href="tel:+919087752120"
-              className="inline-flex items-center gap-2 text-xs font-bold text-brand-700 hover:underline pt-1"
-            >
-              <span>Click to call trade representative →</span>
-            </a>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-sm">
-            <div className="flex items-center gap-2 text-brand-700 font-bold text-xs uppercase">
-              <Mail className="w-4 h-4" />
-              <span>Official Institutional Inquiries</span>
-            </div>
-            <div className="text-base font-bold text-slate-900 font-mono">orders@deltatraders.com</div>
-            <p className="text-xs text-slate-500">
-              Send formal tender documents, institutional RFQs, or corporate supplier registration forms.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2 shadow-sm">
-            <div className="flex items-center gap-2 text-brand-700 font-bold text-xs uppercase">
-              <MapPin className="w-4 h-4" />
-              <span>Registered Trade Address</span>
-            </div>
-            <div className="text-xs font-semibold text-slate-800 leading-relaxed">
-              Plot No. 42/B, Wholesale Commodity Market Complex, Koyambedu Corridor, Chennai - 600092, Tamil Nadu, India.
-            </div>
-            <div className="text-[11px] text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
-              <span>GSTIN: 33AAACD1234F1Z9</span>
-              <span>FSSAI: 12423008000451</span>
-            </div>
-          </div>
-
+          <h1 className="text-4xl sm:text-5xl font-extrabold font-serif text-slate-900 dark:text-white leading-tight">
+            Contact Delta Traders
+          </h1>
+          <p className="text-base text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
+            We’re here to help! Whether you need everyday retail groceries, bulk supplies for hotels and restaurants, wedding catering provisions, parcel packaging materials, or office stationery—connect with our team directly.
+          </p>
         </div>
 
-        {/* Right Column: Step-by-Step Interactive RFQ Form */}
-        <div className="lg:col-span-7 bg-white p-7 sm:p-10 rounded-3xl border border-slate-200 shadow-xl space-y-6">
-          <div className="border-b border-slate-100 pb-4">
-            <h3 className="text-2xl font-bold font-serif text-slate-900">
-              Interactive Wholesale Price Request
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Select your commodities or type your exact lot requirements below:
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* Left Column: Contact Cards with WhatsApp First */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Primary WhatsApp Card (Highlighted & Placed First) */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-700 to-cyan-800 text-white shadow-xl space-y-4 relative overflow-hidden">
+              <div className="flex items-center justify-between">
+                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/20 text-emerald-100 backdrop-blur-md whitespace-nowrap">
+                  ★ First Contact Option
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-emerald-200 whitespace-nowrap">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Instant Response
+                </span>
+              </div>
+
+              <div>
+                <div className="text-xs uppercase tracking-wider text-emerald-200 font-semibold">
+                  Official WhatsApp & Order Hotline
+                </div>
+                <div className="text-3xl sm:text-4xl font-extrabold font-mono mt-1 tracking-tight">
+                  {COMPANY_INFO.primaryPhoneFormatted}
+                </div>
+                <p className="text-xs sm:text-sm text-emerald-100 mt-2 leading-relaxed">
+                  Send your product lists, price enquiry, or order requirements directly to our primary WhatsApp number for quick quotes.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                <a
+                  href={`https://wa.me/91${COMPANY_INFO.primaryPhone}?text=${encodeURIComponent('Hi Delta Traders, I want to inquire about grocery and packaging supply.')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white text-emerald-900 hover:bg-emerald-50 font-bold text-xs uppercase tracking-wider shadow flex items-center gap-2 transition-transform hover:scale-105 whitespace-nowrap"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-600" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+                <button
+                  onClick={handleCopyPhone}
+                  className="px-3.5 py-2.5 rounded-xl bg-black/20 hover:bg-black/30 text-white text-xs font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>{copiedPhone ? 'Copied!' : 'Copy Number'}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Additional Hotlines */}
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+              <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-bold text-xs uppercase">
+                <Phone className="w-4 h-4" />
+                <span>All Contact & Order Numbers</span>
+              </div>
+
+              <div className="space-y-3">
+                {COMPANY_INFO.phones.map((phone, idx) => (
+                  <div key={idx} className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800 last:border-none last:pb-0">
+                    <div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">{phone.label}</div>
+                      <div className="text-base font-extrabold text-slate-900 dark:text-white font-mono">
+                        +91 {phone.number.slice(0, 5)} {phone.number.slice(5)}
+                      </div>
+                    </div>
+                    {phone.isWhatsApp ? (
+                      <a
+                        href={`https://wa.me/91${phone.number}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-1 hover:bg-emerald-200 transition-colors whitespace-nowrap"
+                      >
+                        <MessageCircle className="w-3 h-3" />
+                        WhatsApp
+                      </a>
+                    ) : (
+                      <a
+                        href={`tel:+91${phone.number}`}
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center gap-1 hover:bg-slate-200 transition-colors whitespace-nowrap"
+                      >
+                        Call
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Email Address */}
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm">
+              <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-bold text-xs uppercase">
+                <Mail className="w-4 h-4" />
+                <span>Official Business Email</span>
+              </div>
+              <div className="text-base font-bold text-slate-900 dark:text-white font-mono">
+                {COMPANY_INFO.email}
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Send formal RFQs, purchase orders, vendor onboarding forms, or institutional enquiries.
+              </p>
+            </div>
+
+            {/* Address & Legal Registrations */}
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm">
+              <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-bold text-xs uppercase">
+                <MapPin className="w-4 h-4" />
+                <span>Registered Office & Depot</span>
+              </div>
+              <div className="text-sm font-semibold text-slate-800 dark:text-slate-200 leading-relaxed">
+                {COMPANY_INFO.fullAddress}
+              </div>
+              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pt-1">
+                <Clock className="w-3.5 h-3.5 text-cyan-500" />
+                <span>{COMPANY_INFO.hours}</span>
+              </div>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                <div>GSTIN: {COMPANY_INFO.gstin}</div>
+                <div>FSSAI: {COMPANY_INFO.fssai}</div>
+                <div>Udyam: {COMPANY_INFO.udyam}</div>
+                <div>Dist: Chengalpattu</div>
+              </div>
+            </div>
+
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Right Column: Enquiry Form with DUAL Submission (WhatsApp & Direct Email) */}
+          <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-7 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
             
-            {/* Buyer Info */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                  Your Full Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:bg-white"
-                  placeholder="e.g. Chef Ramesh / Proprietor"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                  WhatsApp / Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:bg-white"
-                  placeholder="e.g. 9087752120"
-                />
-              </div>
+            <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
+                Dual-Option Enquiry Form
+              </span>
+              <h2 className="text-2xl font-bold font-serif text-slate-900 dark:text-white mt-1">
+                Send Product or Bulk Supply Enquiry
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                Fill in your details below and choose whether to send instantly via <strong>WhatsApp</strong> or <strong>Direct Email</strong> to {COMPANY_INFO.email}.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                  Business / Event Name
-                </label>
-                <input
-                  type="text"
-                  value={formData.businessName}
-                  onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:bg-white"
-                  placeholder="e.g. Krishna Catering / Grand Hotel"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                  Business / Order Type
-                </label>
-                <select
-                  value={formData.type}
-                  onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:bg-white"
-                >
-                  <option value="Wedding & Banquet Provisioning">Wedding & Banquet Provisioning</option>
-                  <option value="Hotel / Restaurant Recurring Supply">Hotel / Restaurant Recurring Supply</option>
-                  <option value="Retail Supermarket / Provision Store">Retail Supermarket / Provision Store</option>
-                  <option value="Temple Feast / Charitable Feeding">Temple Feast / Charitable Feeding</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                Delivery Corridor / Location
-              </label>
-              <select
-                value={formData.hub}
-                onChange={(e) => setFormData({ ...formData, hub: e.target.value })}
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:bg-white"
-              >
-                <option value="Chennai (Koyambedu / City Center)">Chennai (Koyambedu / City Center)</option>
-                <option value="Tambaram / Chengalpattu Corridor">Tambaram / Chengalpattu Corridor</option>
-                <option value="Kanchipuram & Sriperumbudur">Kanchipuram & Sriperumbudur</option>
-                <option value="Tiruvallur & Ambattur Belt">Tiruvallur & Ambattur Belt</option>
-                <option value="Vellore / Ranipet District">Vellore / Ranipet District</option>
-                <option value="Pondicherry / Cuddalore Region">Pondicherry / Cuddalore Region</option>
-                <option value="Other Tamil Nadu Districts">Other Tamil Nadu Districts</option>
-              </select>
-            </div>
-
-            {/* Quick Multi-Select Commodity Pills */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold uppercase text-slate-700">
-                Quick-Add Desired Commodities:
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {COMMODITY_PILLS.map((pill, idx) => {
-                  const isSelected = formData.selectedPills.includes(pill);
-                  return (
-                    <button
-                      type="button"
-                      key={idx}
-                      onClick={() => togglePill(pill)}
-                      className={`text-xs px-3 py-1.5 rounded-xl font-bold transition-all ${
-                        isSelected
-                          ? 'bg-brand-700 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
-                    >
-                      {isSelected ? '✓ ' : '+ '}
-                      {pill}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Details Text Area */}
-            <div>
-              <label className="block text-xs font-bold uppercase text-slate-700 mb-1.5">
-                Estimated Quantities & Specific Requirements
-              </label>
-              <textarea
-                rows="3"
-                value={formData.details}
-                onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-semibold focus:outline-none focus:bg-white"
-                placeholder="e.g. 20 bags Deluxe Ponni 25kg, 8 tins Sunflower oil 15L, need delivery by next Tuesday 6 AM..."
-              />
-            </div>
-
-            {/* Submit & WhatsApp Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <button
-                type="submit"
-                className="flex-1 py-3.5 px-6 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg border border-cyan-500/30 transition-transform hover:scale-[1.01]"
-              >
-                Submit RFQ to Trade Desk
-              </button>
-
-              <button
-                type="button"
-                onClick={handleWhatsAppSend}
-                className="py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-transform hover:scale-[1.01]"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Send to WhatsApp</span>
-              </button>
-            </div>
-
-            {submitted && (
-              <div className="p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-2xl text-xs font-semibold flex items-center gap-2">
-                <Check className="w-5 h-5 text-emerald-600 shrink-0" />
-                <span>Thank you! Your quotation request has been recorded. Our wholesale manager will contact you within 30 minutes.</span>
+            {/* Email Status Alert */}
+            {emailStatus?.type === 'success' && (
+              <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 flex items-start gap-3 text-xs leading-relaxed">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-sm">Enquiry Email Delivered!</strong>
+                  <p className="mt-0.5">
+                    Your message was sent directly to <strong>{COMPANY_INFO.email}</strong>. Our team will respond during business hours (9am to 7pm).
+                  </p>
+                </div>
               </div>
             )}
 
-          </form>
+            {emailStatus?.type === 'fallback' && (
+              <div className="p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-800 text-cyan-900 dark:text-cyan-200 space-y-3 text-xs leading-relaxed">
+                <div>
+                  <strong className="text-sm">Enquiry Ready to Dispatch</strong>
+                  <p className="mt-0.5">
+                    Click below to send directly via your web browser Gmail tab or default mail app:
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={emailStatus.gmailUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-cyan-600 text-white font-bold inline-flex items-center gap-1.5 shadow"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Open & Send in Gmail (Web Tab)</span>
+                  </a>
+                  <a
+                    href={emailStatus.mailtoUrl}
+                    className="px-4 py-2 rounded-xl bg-slate-800 text-white font-bold inline-flex items-center gap-1.5 shadow"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Open in Default Mail Client</span>
+                  </a>
+                </div>
+              </div>
+            )}
+
+            <form className="space-y-4">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Your Name / Contact Person *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Ramesh Kumar"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Phone / WhatsApp Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="e.g. 9876543210"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="e.g. yourname@gmail.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Enquiry Type
+                  </label>
+                  <select
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  >
+                    <option value="Wholesale & Bulk Supply Enquiry">Wholesale & Bulk Supply Enquiry</option>
+                    <option value="Hotel / Restaurant Recurring Supply">Hotel / Restaurant Recurring Supply</option>
+                    <option value="Wedding / Catering Provisioning">Wedding / Catering Provisioning</option>
+                    <option value="Retail Grocery Purchase">Retail Grocery Purchase</option>
+                    <option value="Packaging & Parcel Materials">Packaging & Parcel Materials</option>
+                    <option value="Stationery & Office Supplies">Stationery & Office Supplies</option>
+                    <option value="Delivery & Logistics Enquiry">Delivery & Logistics Enquiry</option>
+                    <option value="Other Business Enquiry">Other Business Enquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Business / Customer Type
+                  </label>
+                  <select
+                    value={formData.businessType}
+                    onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  >
+                    <option value="Hotel / Restaurant Kitchen">Hotel / Restaurant Kitchen</option>
+                    <option value="Wedding / Event Caterer">Wedding / Event Caterer</option>
+                    <option value="Provision Store / Supermarket">Provision Store / Supermarket</option>
+                    <option value="Hostel / College Mess">Hostel / College Mess</option>
+                    <option value="Corporate / Office">Corporate / Office</option>
+                    <option value="Household / Individual Consumer">Household / Individual Consumer</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                    Delivery Location / Town
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Maduranthagam, Chengalpattu, Melmaruvathur"
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+                  Product Requirements & Approximate Quantities
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="Specify items, pack sizes, or quantities needed (e.g. Sugar 50kg, Sunflower Oil 15L, Aluminium Containers 750ml - 500 pcs, Chilli Powder 10kg)..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                />
+              </div>
+
+              {/* DUAL SUBMISSION BUTTONS */}
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                  Select your preferred enquiry submission method:
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* Option 1: WhatsApp Submission */}
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppSubmit}
+                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
+                  >
+                    <MessageCircle className="w-4 h-4 shrink-0" />
+                    <span>Submit via WhatsApp</span>
+                  </button>
+
+                  {/* Option 2: Direct Email Submission */}
+                  <button
+                    type="button"
+                    onClick={handleEmailSubmit}
+                    disabled={isSendingEmail}
+                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-700 hover:from-cyan-500 hover:to-blue-600 disabled:opacity-75 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
+                  >
+                    {isSendingEmail ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+                        <span>Sending to {COMPANY_INFO.email}...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="w-4 h-4 shrink-0" />
+                        <span>Submit via Email</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div className="text-[11px] text-center text-slate-400 dark:text-slate-500 pt-1">
+                  Enquiries sent via WhatsApp go directly to <span className="text-emerald-600 dark:text-emerald-400 font-bold">{COMPANY_INFO.primaryPhoneFormatted}</span>. Emails are delivered directly to <span className="text-cyan-600 dark:text-cyan-400 font-bold">{COMPANY_INFO.email}</span>.
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+
         </div>
 
       </div>

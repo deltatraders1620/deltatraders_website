@@ -10,101 +10,105 @@ export default function Testimonials() {
       name: 'Chef S. Soundararajan',
       role: 'Master Caterer, Royal Tamil Feasts',
       category: 'caterer',
-      location: 'Kanchipuram & Chennai',
-      image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=400&q=80',
-      stats: 'Saved ₹1,28,000 on 3 Wedding Contracts',
+      location: 'Maduranthagam & Chengalpattu',
+      stats: '15+ Wedding Contracts Supplied',
       rating: 5,
       review:
-        'As a head cook, nothing ruins my sleep more than mixed rice batches that turn mushy or oil that foams up. Delta Traders delivers pure Sortex Ponni and sealed 15L sunflower tins directly to the marriage hall by 5:45 AM. Their computerized weighment slip gave complete peace of mind.',
+        'Delta Traders has been a dependable partner for our wedding banquets. From 50kg sacks of first-grade Maida and Sugar to 15L oil tins and cardamom, everything arrives at the marriage hall on time. The packaging of their aluminium containers is solid with zero transit damage.',
     },
     {
       id: 2,
       name: 'K. Rajasekaran',
-      role: 'Procurement Director, Annapoorna Grand Residency',
+      role: 'Managing Partner, Highway Grand Residency',
       category: 'hotel',
-      location: 'Chennai Central & Tambaram',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-      stats: '4.5 Tons Monthly Bulk Supply',
+      location: 'Acharapakkam - NH-32 Corridor',
+      stats: 'Weekly Recurring Supply Partner',
       rating: 5,
       review:
-        'We run two busy restaurants and a banquet hall. Mandi brokers kept fluctuating prices every 10 days. Delta Traders locked our monthly price for Toor Dal and Ponni rice. We cut our procurement bill by 18% immediately.',
+        'Managing our hotel kitchen supplies used to mean running to three different shops for groceries, culinary sauces, and parcel packaging. Delta Traders brings them all together in one weekly delivery. Transparent GST invoicing and dependable support.',
     },
     {
       id: 3,
       name: 'M. Venkatesh',
-      role: 'Proprietor, Sri Krishna Super Bazaar',
+      role: 'Proprietor, Sri Krishna Store',
       category: 'store',
-      location: 'Chengalpattu Town',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
-      stats: '120 Bags Restocked Bi-Weekly',
+      location: 'Maduranthagam Town',
+      stats: 'Retail Groceries & Stationery Stockist',
       rating: 5,
       review:
-        'Reselling full 25kg bags to household customers requires competitive margin. Delta Traders factory rates allowed us to undercut local retailers by ₹150 per bag while expanding our retail margin. Their delivery tempo unloads directly into our storeroom.',
+        'We stock their food grains, cooking oils, and parcel materials in our store. Communication on WhatsApp is very responsive. Even if we need quick extra bags or parcel covers, their local team supports us immediately.',
     },
     {
       id: 4,
       name: 'Chef Anthony Doss',
-      role: 'Executive Chef, Coastal Spices Banquet',
-      category: 'caterer',
-      location: 'OMR Corridor',
-      image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=400&q=80',
-      stats: '2,500 Guests Mega Feast Supplied',
+      role: 'Executive Chef, Coastal Spices Kitchen',
+      category: 'hotel',
+      location: 'Melmaruvathur Corridor',
+      stats: 'Regular Food Service Supply',
       rating: 5,
       review:
-        'Their Royal 1121 Basmati grain elongation is extraordinary—each grain remains separate and fragrant. For our 2,500 guest corporate gala, their emergency buffer lot saved our second session. Outstanding service.',
+        'Their tomato ketchup, dark soya sauce, vinegar, and chilli powder are restaurant grade. Our cloud kitchen depends on their aluminium 750ml containers and bio cups for daily takeout orders. Highly recommended.',
     },
   ];
 
   const filtered = filter === 'all' ? REVIEWS : REVIEWS.filter((r) => r.category === filter);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-harvest-700 bg-harvest-100 px-3 py-1 rounded-full border border-harvest-200 inline-block mb-2">
-            Verified Commercial Buyers
-          </span>
-          <h2 className="text-3xl font-extrabold text-slate-900 font-serif">
-            Trusted by Head Cooks, Hoteliers & Supermarkets
-          </h2>
-          <p className="text-xs text-slate-600 mt-1">
-            Real feedback from commercial kitchens moving tons of commodities every month.
-          </p>
-        </div>
+    <section className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+      <div className="text-center max-w-2xl mx-auto space-y-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/70 px-3 py-1 rounded-full border border-cyan-300 dark:border-cyan-800">
+          Client Feedback
+        </span>
+        <h2 className="text-3xl font-extrabold font-serif text-slate-900 dark:text-white">
+          Trusted by Kitchens & Businesses
+        </h2>
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          What caterers, restaurants, and shop owners in Chengalpattu district say about our supply service.
+        </p>
+      </div>
 
-        {/* Filter Pills */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl border border-slate-200">
+      {/* Filter Tabs */}
+      <div className="flex justify-center">
+        <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 max-w-full overflow-x-auto shadow-sm">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'all' ? 'bg-brand-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              filter === 'all'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            All Reviews
+            All Partners
           </button>
           <button
             onClick={() => setFilter('caterer')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'caterer' ? 'bg-brand-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              filter === 'caterer'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             Wedding Caterers
           </button>
           <button
             onClick={() => setFilter('hotel')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'hotel' ? 'bg-brand-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              filter === 'hotel'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            Hotels & Restaurants
+            Hotels & Kitchens
           </button>
           <button
             onClick={() => setFilter('store')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'store' ? 'bg-brand-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              filter === 'store'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            Supermarkets
+            Retail Provisioners
           </button>
         </div>
       </div>
@@ -113,44 +117,33 @@ export default function Testimonials() {
         {filtered.map((item) => (
           <div
             key={item.id}
-            className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between"
+            className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 flex flex-col justify-between"
           >
             <div className="space-y-3">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-13 h-13 rounded-2xl object-cover border border-slate-200 shadow-sm"
-                  />
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">{item.name}</h4>
-                    <p className="text-[11px] text-brand-700 font-semibold">{item.role}</p>
-                    <p className="text-[10px] text-slate-400">📍 {item.location}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center text-amber-400">
+              <div className="flex items-center justify-between">
+                <div className="flex text-amber-400">
                   {[...Array(item.rating)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                    <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-              </div>
-
-              <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-100 flex items-center justify-between text-xs">
-                <span className="font-extrabold text-brand-900">{item.stats}</span>
-                <span className="text-[10px] text-emerald-700 font-bold flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-emerald-500" /> Verified Order
+                <span className="text-[11px] font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-200 dark:border-cyan-800">
+                  {item.stats}
                 </span>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed italic">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic">
                 "{item.review}"
               </p>
             </div>
 
-            <div className="pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-medium">
-              Direct Mill Procurement Partner since 2024
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <div>
+                <div className="font-bold text-slate-900 dark:text-white">{item.name}</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400">{item.role}</div>
+              </div>
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 font-medium text-right">
+                📍 {item.location}
+              </div>
             </div>
           </div>
         ))}

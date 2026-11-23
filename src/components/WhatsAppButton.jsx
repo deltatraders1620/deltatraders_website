@@ -1,15 +1,20 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
+import { COMPANY_INFO } from '../data/products';
 
 export default function WhatsAppButton() {
+  const whatsappUrl = `https://wa.me/91${COMPANY_INFO.primaryPhone}?text=${encodeURIComponent(
+    'Hi Delta Traders, I am inquiring about grocery, hotel kitchen supply, and packaging wholesale requirements.'
+  )}`;
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-      <div className="hidden md:flex items-center bg-brand-950/95 text-cyan-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl border border-cyan-500/30 animate-bounce">
+      <div className="hidden md:flex items-center bg-navy-950/95 dark:bg-slate-900/95 text-cyan-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xl border border-cyan-500/30 animate-bounce">
         <span className="w-2 h-2 rounded-full bg-cyan-400 mr-2 animate-ping" />
-        Chat on WhatsApp: 9087752120
+        WhatsApp: {COMPANY_INFO.primaryPhoneFormatted}
       </div>
       <a
-        href="https://wa.me/919087752120?text=Hi%20Delta%20Traders,%20I%20want%20to%20inquire%20about%20bulk%20grocery%20pricing%20and%20supplies."
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

@@ -1,87 +1,93 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle, Phone, ArrowRight, MessageCircle } from 'lucide-react';
+import { COMPANY_INFO } from '../data/products';
+import { Link } from 'react-router-dom';
 
 export default function FaqSection() {
   const [openIdx, setOpenIdx] = useState(0);
 
   const FAQS = [
     {
-      q: 'What is the minimum order quantity for wholesale rates?',
-      a: 'We specialize strictly in bulk and wholesale lots. Minimum orders are 10 bags for rice and dals (25kg or 50kg sacks), and 5 tins for cooking oils (15L / 15kg tins). We do not deal in loose retail (1kg/2kg) quantities.',
+      q: 'Do you sell to individual customers?',
+      a: 'Yes. Delta Traders serves both individual retail customers and commercial business customers. Product availability and order quantities can be confirmed directly on our website or through our support team.',
     },
     {
-      q: 'How does Delta Traders offer 15% to 25% lower prices than wholesale mandis?',
-      a: 'Traditional mandi supply passes through 4 middlemen: the mill, a primary broker (4%), wholesale mandi merchant (10%), and sub-dealer (8%). We purchase directly from partner milling units and extraction plants in full 10-to-20 ton lorry consignments, passing the entire margin directly to our commercial kitchen buyers.',
+      q: 'Do you provide wholesale or bulk supply?',
+      a: 'Yes, we accept bulk supply enquiries from hotels, restaurants, wedding caterers, shops, and institutions. Share the products and quantities required for a competitive quotation.',
     },
     {
-      q: 'How do you guarantee accurate weighment?',
-      a: 'Every sack and tin passes over our digital calibrated weighbridge at our Koyambedu depot before loading onto the delivery fleet. A stamped computerized weighment slip is attached to each invoice with zero tare discrepancy.',
+      q: 'What products do you sell?',
+      a: 'Our listed categories include groceries & daily food essentials, whole spices & masalas, cooking oils, stationery, and parcel and packaging materials (food containers, cups, pouches, and rolls).',
     },
     {
-      q: 'Can we return unopened bags from a wedding or banquet?',
-      a: 'Yes! For registered wedding and catering contracts, we accept returns on intact, unopened, and moisture-free bags returned within 48 hours of the event conclusion, deducting only nominal round-trip transit freight.',
+      q: 'Do you deliver across Chengalpattu district?',
+      a: 'Delivery is available in serviceable areas across Chengalpattu district including Maduranthagam, Melmaruvathur, Acharapakkam, and Chengalpattu town. Charges and estimated timelines are confirmed based on the order and destination.',
     },
     {
-      q: 'What time does the morning delivery fleet arrive at wedding halls?',
-      a: 'Our transport fleet departs between 5:30 AM and 6:00 AM every morning. Orders within Chennai, Tambaram, and Kanchipuram typically arrive before 7:30 AM, ensuring kitchen masters have ingredients ready before breakfast service starts.',
+      q: 'How can I enquire about a product or place an order?',
+      a: 'Use our online enquiry basket or contact us directly via WhatsApp (8668054308), phone, or email (deltatraders.1620@gmail.com). We provide quick response during working hours.',
     },
     {
-      q: 'What payment modes are accepted for bulk orders?',
-      a: 'We accept RTGS / NEFT, Cheque (for approved institutional accounts), UPI (PhonePe / Google Pay / Paytm for Business), and Cash on Delivery against printed weighbridge receipts for verified commercial kitchens.',
+      q: 'Can I request recurring supplies for my hotel or kitchen?',
+      a: 'Yes. Share your product list, regular quantities, location, and preferred delivery schedule. We will confirm availability, pricing, and recurring supply terms.',
     },
   ];
 
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+    <section className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-6">
       <div className="text-center space-y-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
-          Wholesale Trade Help
-        </span>
-        <h2 className="text-3xl font-extrabold font-serif text-slate-900">
+        <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/70 px-3 py-1 rounded-full border border-cyan-300 dark:border-cyan-800">
           Frequently Asked Questions
+        </span>
+        <h2 className="text-3xl font-extrabold font-serif text-slate-900 dark:text-white">
+          Help & Ordering Information
         </h2>
-        <p className="text-xs text-slate-600">
-          Clear answers regarding lot sizes, returns, morning dispatches, and weighment honesty.
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Clear answers regarding retail orders, wholesale supplies, deliveries in Chengalpattu, and quotation requests.
         </p>
       </div>
 
       <div className="space-y-3">
-        {FAQS.map((item, idx) => (
-          <div
-            key={idx}
-            className="border border-slate-200 rounded-2xl bg-white overflow-hidden transition-all shadow-sm"
-          >
-            <button
-              onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-              className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition-colors"
+        {FAQS.map((item, idx) => {
+          const isOpen = openIdx === idx;
+          return (
+            <div
+              key={idx}
+              className="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden transition-all shadow-sm"
             >
-              <span className="text-sm font-bold text-slate-900 flex items-center gap-2.5">
-                <HelpCircle className="w-4 h-4 text-brand-600 shrink-0" />
-                <span>{item.q}</span>
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${
-                  openIdx === idx ? 'rotate-180 text-brand-700' : ''
-                }`}
-              />
-            </button>
+              <button
+                onClick={() => setOpenIdx(isOpen ? -1 : idx)}
+                className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+              >
+                <span className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                  <HelpCircle className="w-4 h-4 text-cyan-500 shrink-0" />
+                  <span>{item.q}</span>
+                </span>
+                {isOpen ? (
+                  <ChevronUp className="w-4 h-4 text-cyan-500 shrink-0" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+                )}
+              </button>
 
-            {openIdx === idx && (
-              <div className="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                {item.a}
-              </div>
-            )}
-          </div>
-        ))}
+              {isOpen && (
+                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
+                  {item.a}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      <div className="text-center pt-2">
-        <p className="text-xs text-slate-500">
-          Have an urgent custom requirement or large tender?{' '}
-          <a href="tel:+919087752120" className="text-brand-700 font-bold hover:underline">
-            Call our Trade Desk directly at +91 90877 52120
-          </a>
-        </p>
+      <div className="flex items-center justify-center pt-2">
+        <Link
+          to="/faq"
+          className="inline-flex items-center gap-2 text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors"
+        >
+          <span>View all FAQs and policies</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
     </section>
   );
