@@ -15,6 +15,7 @@ export async function onRequestPost(context) {
   try {
     const data = await context.request.json();
     const targetEmail = context.env?.TARGET_EMAIL || 'deltatraders.1620@gmail.com';
+    const formToken = context.env?.FORMSUBMIT_TOKEN || 'd8c8568f86bb43878528e2f7e7b3c955';
     const formType = data.formType || 'Enquiry';
     const subject = data.subject || `[Delta Traders Website] ${formType} - ${data.name || data.businessName || 'Customer'}`;
 
@@ -36,8 +37,8 @@ export async function onRequestPost(context) {
       _replyto: data.email && data.email.includes('@') ? data.email : targetEmail,
     };
 
-    // Forward to FormSubmit delivery engine
-    const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+    // Forward to FormSubmit delivery engine using verified token
+    const response = await fetch(`https://formsubmit.co/ajax/${formToken || targetEmail}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -8,6 +8,7 @@
 import { COMPANY_INFO } from '../data/products';
 
 const SMTP_API_URL = import.meta.env.VITE_SMTP_API_URL || '/api/send-email';
+const FORMSUBMIT_TOKEN = 'd8c8568f86bb43878528e2f7e7b3c955'; // Delta Traders verified token (protects your email from scrapers)
 
 export async function sendEmailEnquiry(data, formType = 'Enquiry') {
   const targetEmail = COMPANY_INFO.email; // deltatraders.1620@gmail.com
@@ -95,7 +96,7 @@ export async function sendEmailEnquiry(data, formType = 'Enquiry') {
       _replyto: data.email || targetEmail,
     };
 
-    const fsRes = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+    const fsRes = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN || targetEmail}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
