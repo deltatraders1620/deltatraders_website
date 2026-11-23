@@ -6,9 +6,8 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('delta_theme');
     if (saved) return saved;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+    // Always default to clean, bright Light Theme for all first-time visitors
+    return 'light';
   });
 
   useEffect(() => {
