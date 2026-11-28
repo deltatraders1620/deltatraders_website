@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   Search,
@@ -14,7 +14,8 @@ import {
   Play,
   RotateCcw,
   Layers,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 import { PRODUCTS, CATEGORIES, COMPANY_INFO } from '../data/products';
 import { useRfq } from '../context/RfqContext';
@@ -29,6 +30,113 @@ export default function CatalogSection({ initialCategory = 'all' }) {
   const [quantities, setQuantities] = useState({});
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const tickerContainerRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftStartRef = useRef(0);
+  const dragMovedRef = useRef(false);
+
+  // Triple categories for infinite wrapping
+  const tickerItems = useMemo(() => [...CATEGORIES, ...CATEGORIES, ...CATEGORIES], []);
+
+  // Wrap check function for infinite looping
+  const checkWrap = () => {
+    const el = tickerContainerRef.current;
+    if (!el) return;
+    const oneSetWidth = el.scrollWidth / 3;
+    if (oneSetWidth > 50) {
+      if (el.scrollLeft >= oneSetWidth * 2) {
+        el.scrollLeft -= oneSetWidth;
+      } else if (el.scrollLeft <= 5) {
+        el.scrollLeft += oneSetWidth;
+      }
+    }
+  };
+
+  // Center scroll position on mount
+  useEffect(() => {
+    const el = tickerContainerRef.current;
+    if (el) {
+      const oneSetWidth = el.scrollWidth / 3;
+      el.scrollLeft = oneSetWidth;
+    }
+  }, []);
+
+  // Continuous auto-glide ticker via requestAnimationFrame
+  useEffect(() => {
+    let animId;
+    const glide = () => {
+      const el = tickerContainerRef.current;
+      if (el && !isMarqueePaused && !isHovered && !isDraggingRef.current) {
+        el.scrollLeft += 0.75;
+        const oneSetWidth = el.scrollWidth / 3;
+        if (oneSetWidth > 50) {
+          if (el.scrollLeft >= oneSetWidth * 2) {
+            el.scrollLeft -= oneSetWidth;
+          } else if (el.scrollLeft <= 5) {
+            el.scrollLeft += oneSetWidth;
+          }
+        }
+      }
+      animId = requestAnimationFrame(glide);
+    };
+
+    animId = requestAnimationFrame(glide);
+    return () => cancelAnimationFrame(animId);
+  }, [isMarqueePaused, isHovered]);
+
+  const scrollLeftOrRight = (distance) => {
+    const el = tickerContainerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: distance, behavior: 'smooth' });
+    setTimeout(checkWrap, 350);
+  };
+
+  const handleMouseDown = (e) => {
+    const el = tickerContainerRef.current;
+    if (!el) return;
+    isDraggingRef.current = true;
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftStartRef.current = el.scrollLeft;
+    dragMovedRef.current = false;
+  };
+
+  const handleMouseMove = (e) => {
+    const el = tickerContainerRef.current;
+    if (!isDraggingRef.current || !el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - startXRef.current;
+    if (Math.abs(walk) > 4) {
+      dragMovedRef.current = true;
+    }
+    el.scrollLeft = scrollLeftStartRef.current - walk;
+    checkWrap();
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDraggingRef.current = false;
+  };
+
+  const handleWheel = (e) => {
+    const el = tickerContainerRef.current;
+    if (!el) return;
+    if (Math.abs(e.deltaX) > 0) {
+      checkWrap();
+    } else if (Math.abs(e.deltaY) > 0) {
+      el.scrollLeft += e.deltaY;
+      checkWrap();
+    }
+  };
+
+  const handleCategoryCardClick = (catId) => {
+    if (dragMovedRef.current) {
+      dragMovedRef.current = false;
+      return;
+    }
+    handleCategorySelect(catId);
+  };
 
   useEffect(() => {
     if (urlCategory) {
@@ -115,7 +223,7 @@ export default function CatalogSection({ initialCategory = 'all' }) {
         </button>
       </div>
 
-      {/* Continuous Marquee Category Ticker (Moves Right-to-Left, Pauses on Hover) */}
+      {/* Interactive Category Ticker (Auto-glides, Pauses on Hover, Drag/Arrows to Move Left/Right) */}
       <div className="space-y-3">
         {/* Ticker Header & Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
@@ -125,13 +233,14 @@ export default function CatalogSection({ initialCategory = 'all' }) {
               <span>Category Ticker</span>
             </span>
             <span className="text-slate-500 dark:text-slate-400 text-xs hidden sm:inline">
-              Gliding right-to-left • Hover to pause • Click to filter catalog
+              Auto-gliding • Hover to pause • Drag, swipe, or click arrows to move left/right
             </span>
           </div>
 
           <div className="flex items-center gap-2 self-end sm:self-auto">
             {selectedCategory !== 'all' && (
               <button
+                type="button"
                 onClick={() => handleCategorySelect('all')}
                 className="px-3 py-1 rounded-lg bg-slate-200 dark:bg-navy-800 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-300 text-xs font-bold flex items-center gap-1.5 transition-colors"
                 title="Clear category filter and view all products"
@@ -141,7 +250,30 @@ export default function CatalogSection({ initialCategory = 'all' }) {
               </button>
             )}
 
+            {/* Left & Right Manual Navigation Buttons in Header */}
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-navy-950 p-0.5 rounded-lg border border-slate-300 dark:border-navy-800">
+              <button
+                type="button"
+                onClick={() => scrollLeftOrRight(-260)}
+                className="p-1 rounded-md bg-white dark:bg-navy-900 text-slate-700 dark:text-slate-200 hover:bg-cyan-500 hover:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-all shadow-sm"
+                title="Move categories left"
+                aria-label="Move categories left"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollLeftOrRight(260)}
+                className="p-1 rounded-md bg-white dark:bg-navy-900 text-slate-700 dark:text-slate-200 hover:bg-cyan-500 hover:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-all shadow-sm"
+                title="Move categories right"
+                aria-label="Move categories right"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
             <button
+              type="button"
               onClick={() => setIsMarqueePaused((prev) => !prev)}
               className="px-3 py-1 rounded-lg bg-white dark:bg-navy-900 border border-slate-300 dark:border-navy-700 hover:border-cyan-400 text-slate-700 dark:text-slate-200 text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all"
               title={isMarqueePaused ? 'Resume auto-scrolling ticker' : 'Pause auto-scrolling ticker'}
@@ -161,54 +293,94 @@ export default function CatalogSection({ initialCategory = 'all' }) {
           </div>
         </div>
 
-        {/* Marquee Track Container (Zero Scrollbars, Left/Right Gradient Fades) */}
-        <div
-          className="relative w-full overflow-hidden py-1 rounded-2xl bg-slate-100/60 dark:bg-navy-950/40 border border-slate-200/80 dark:border-navy-800/80"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Left & Right Gradient Fades to create seamless cinematic edge entry */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-slate-100 dark:from-navy-950 to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-slate-100 dark:from-navy-950 to-transparent z-10" />
+        {/* Interactive Track Container (With Left & Right Quick Step Buttons, Drag to Scrub, Zero Ugly Scrollbars) */}
+        <div className="relative w-full group/ticker">
+          {/* Floating Left Arrow Button */}
+          <button
+            type="button"
+            onClick={() => scrollLeftOrRight(-280)}
+            aria-label="Scroll left"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 dark:bg-navy-900/95 text-slate-700 dark:text-slate-200 hover:bg-cyan-500 hover:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 border border-slate-300 dark:border-cyan-500/40 shadow-lg flex items-center justify-center transition-all active:scale-95 hover:scale-105"
+            title="Move left"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-          {/* Continuous Moving Track */}
+          {/* Floating Right Arrow Button */}
+          <button
+            type="button"
+            onClick={() => scrollLeftOrRight(280)}
+            aria-label="Scroll right"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 dark:bg-navy-900/95 text-slate-700 dark:text-slate-200 hover:bg-cyan-500 hover:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 border border-slate-300 dark:border-cyan-500/40 shadow-lg flex items-center justify-center transition-all active:scale-95 hover:scale-105"
+            title="Move right"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Left & Right Gradient Fades to create seamless cinematic edge entry */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-slate-100 dark:from-navy-950 to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-slate-100 dark:from-navy-950 to-transparent z-10" />
+
+          {/* Drag & Scroll Container */}
           <div
-            className="flex items-center gap-3 w-max py-2 select-none"
+            ref={tickerContainerRef}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => {
+              setIsHovered(false);
+              handleMouseUpOrLeave();
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onTouchStart={() => {
+              isDraggingRef.current = true;
+              dragMovedRef.current = false;
+            }}
+            onTouchEnd={() => {
+              isDraggingRef.current = false;
+            }}
+            onScroll={checkWrap}
+            onWheel={handleWheel}
+            className="relative w-full overflow-x-auto no-scrollbar py-2.5 px-12 rounded-2xl bg-slate-100/60 dark:bg-navy-950/40 border border-slate-200/80 dark:border-navy-800/80 select-none cursor-grab active:cursor-grabbing"
             style={{
-              animation: 'marqueeRtl 60s linear infinite',
-              animationPlayState: isMarqueePaused || isHovered ? 'paused' : 'running',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch',
             }}
           >
-            {[...CATEGORIES, ...CATEGORIES].map((cat, idx) => {
-              const isSelected = selectedCategory === cat.id;
-              return (
-                <button
-                  key={`${cat.id}-${idx}`}
-                  type="button"
-                  onClick={() => handleCategorySelect(cat.id)}
-                  className={`group px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 flex items-center gap-2.5 shadow-sm shrink-0 cursor-pointer ${
-                    isSelected
-                      ? 'bg-navy-950 dark:bg-cyan-500 text-cyan-300 dark:text-navy-950 border-2 border-cyan-400 dark:border-cyan-200 shadow-md ring-2 ring-cyan-500/30 scale-[1.03]'
-                      : 'bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-navy-700/80 hover:border-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-[1.02]'
-                  }`}
-                >
-                  <span className="font-bold">{cat.name}</span>
-                  <span
-                    className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full transition-colors ${
+            <div className="flex items-center gap-3 w-max py-0.5">
+              {tickerItems.map((cat, idx) => {
+                const isSelected = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={`${cat.id}-${idx}`}
+                    type="button"
+                    onClick={() => handleCategoryCardClick(cat.id)}
+                    className={`group px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 flex items-center gap-2.5 shadow-sm shrink-0 cursor-pointer ${
                       isSelected
-                        ? 'bg-cyan-400 dark:bg-navy-950 text-navy-950 dark:text-cyan-300 font-black'
-                        : 'bg-slate-100 dark:bg-navy-950 text-slate-600 dark:text-slate-400 group-hover:bg-cyan-50 dark:group-hover:bg-navy-800 group-hover:text-cyan-600 dark:group-hover:text-cyan-300'
+                        ? 'bg-navy-950 dark:bg-cyan-500 text-cyan-300 dark:text-navy-950 border-2 border-cyan-400 dark:border-cyan-200 shadow-md ring-2 ring-cyan-500/30 scale-[1.03]'
+                        : 'bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-navy-700/80 hover:border-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-[1.02]'
                     }`}
                   >
-                    {cat.count}
-                  </span>
-                </button>
-              );
-            })}
+                    <span className="font-bold">{cat.name}</span>
+                    <span
+                      className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full transition-colors ${
+                        isSelected
+                          ? 'bg-cyan-400 dark:bg-navy-950 text-navy-950 dark:text-cyan-300 font-black'
+                          : 'bg-slate-100 dark:bg-navy-950 text-slate-600 dark:text-slate-400 group-hover:bg-cyan-50 dark:group-hover:bg-navy-800 group-hover:text-cyan-600 dark:group-hover:text-cyan-300'
+                      }`}
+                    >
+                      {cat.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Active Filter & Search Bar Row */}
+      {/* Active Filter & Search Bar Row */}
         <div className="space-y-3 pt-1">
           {selectedCategory !== 'all' && (
             <div className="flex items-center justify-between px-4 py-2 rounded-xl bg-cyan-50 dark:bg-navy-900 border border-cyan-200 dark:border-cyan-800 text-xs">
@@ -257,7 +429,6 @@ export default function CatalogSection({ initialCategory = 'all' }) {
             </span>
           </div>
         </div>
-      </div>
       </div>
 
       {/* Product Cards Grid - Expansive 5-col on widescreen */}

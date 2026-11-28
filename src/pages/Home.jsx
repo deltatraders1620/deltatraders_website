@@ -76,9 +76,88 @@ export default function Home() {
         <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           
           {/* Interactive Buyer Selector Switcher */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex p-1.5 rounded-2xl bg-navy-900/90 backdrop-blur-md border border-cyan-500/20 max-w-full overflow-x-auto shadow-xl">
+          <div className="flex flex-col items-center mb-8 w-full max-w-2xl mx-auto px-2">
+            
+            {/* Mobile View (sm:hidden): All 3 sectors clearly visible side-by-side with 0 hidden buttons */}
+            <div className="sm:hidden w-full">
+              <div className="flex items-center justify-between text-[11px] text-cyan-300 font-bold mb-2 px-1">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span>3 Business Sectors:</span>
+                </span>
+                <span className="bg-navy-900/90 border border-cyan-500/30 px-2 py-0.5 rounded-full text-[10px] text-cyan-300 font-mono">
+                  {heroPersona === 'hotel' ? '1 of 3: Hotels' : heroPersona === 'caterer' ? '2 of 3: Weddings' : '3 of 3: Retail'}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-1.5 p-1.5 rounded-2xl bg-navy-900/95 backdrop-blur-md border border-cyan-500/30 shadow-xl w-full">
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('hotel')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center text-center leading-tight ${
+                    heroPersona === 'hotel'
+                      ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30 font-extrabold ring-1 ring-cyan-300 scale-[1.02]'
+                      : 'text-slate-300 hover:text-white bg-navy-950/60'
+                  }`}
+                >
+                  <span className="text-base mb-0.5">🏢</span>
+                  <span className="truncate w-full text-[10.5px]">Hotels & Mess</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('caterer')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center text-center leading-tight ${
+                    heroPersona === 'caterer'
+                      ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30 font-extrabold ring-1 ring-cyan-300 scale-[1.02]'
+                      : 'text-slate-300 hover:text-white bg-navy-950/60'
+                  }`}
+                >
+                  <span className="text-base mb-0.5">💍</span>
+                  <span className="truncate w-full text-[10.5px]">Caterers</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('store')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all flex flex-col items-center justify-center text-center leading-tight ${
+                    heroPersona === 'store'
+                      ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30 font-extrabold ring-1 ring-cyan-300 scale-[1.02]'
+                      : 'text-slate-300 hover:text-white bg-navy-950/60'
+                  }`}
+                >
+                  <span className="text-base mb-0.5">🏪</span>
+                  <span className="truncate w-full text-[10.5px]">Retail Store</span>
+                </button>
+              </div>
+
+              {/* 3 Pagination Indicator Dots */}
+              <div className="flex justify-center items-center gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('hotel')}
+                  className={`h-1.5 rounded-full transition-all ${heroPersona === 'hotel' ? 'w-6 bg-cyan-400 shadow-sm shadow-cyan-400/50' : 'w-1.5 bg-slate-600'}`}
+                  aria-label="Hotel & Restaurant Supplies (1 of 3)"
+                />
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('caterer')}
+                  className={`h-1.5 rounded-full transition-all ${heroPersona === 'caterer' ? 'w-6 bg-cyan-400 shadow-sm shadow-cyan-400/50' : 'w-1.5 bg-slate-600'}`}
+                  aria-label="Wedding & Banquet Catering (2 of 3)"
+                />
+                <button
+                  type="button"
+                  onClick={() => setHeroPersona('store')}
+                  className={`h-1.5 rounded-full transition-all ${heroPersona === 'store' ? 'w-6 bg-cyan-400 shadow-sm shadow-cyan-400/50' : 'w-1.5 bg-slate-600'}`}
+                  aria-label="Retail Grocery & Packaging (3 of 3)"
+                />
+              </div>
+            </div>
+
+            {/* Desktop & Tablet View (hidden sm:inline-flex): Expansive full text without scrollbar */}
+            <div className="hidden sm:inline-flex p-1.5 rounded-2xl bg-navy-900/90 backdrop-blur-md border border-cyan-500/20 shadow-xl no-scrollbar">
               <button
+                type="button"
                 onClick={() => setHeroPersona('hotel')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                   heroPersona === 'hotel'
@@ -89,6 +168,7 @@ export default function Home() {
                 🏢 Hotel & Restaurant Supplies
               </button>
               <button
+                type="button"
                 onClick={() => setHeroPersona('caterer')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                   heroPersona === 'caterer'
@@ -99,6 +179,7 @@ export default function Home() {
                 💍 Wedding & Banquet Catering
               </button>
               <button
+                type="button"
                 onClick={() => setHeroPersona('store')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                   heroPersona === 'store'
@@ -109,6 +190,7 @@ export default function Home() {
                 🏪 Retail Grocery & Packaging
               </button>
             </div>
+
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
