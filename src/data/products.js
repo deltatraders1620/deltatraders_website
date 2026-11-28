@@ -4,7 +4,7 @@ export const CATEGORIES = [
     name: 'All Products', 
     tamilName: 'அனைத்து பொருட்கள்', 
     count: 72,
-    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-groceries.jpg',
     description: 'Explore our complete wholesale & retail catalog of groceries, spices, cooking oils, parcels, and stationery.'
   },
   { 
@@ -12,7 +12,7 @@ export const CATEGORIES = [
     name: 'Grains, Pulses & Staples', 
     tamilName: 'தானியங்கள் & பருப்பு வகைகள்', 
     count: 16,
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-groceries.jpg',
     description: 'First-grade rice, chakki atta, fine maida, refined sugar, toor dal, urad dal gota, moong dal, and peas.',
     popularItems: ['Sugar', 'Maida', 'Chakki Atta', 'Toor Dal', 'Urad Dal Gota', 'Moong Dal']
   },
@@ -21,7 +21,7 @@ export const CATEGORIES = [
     name: 'Whole Spices & Condiments', 
     tamilName: 'மளிகை & முழு மசாலா', 
     count: 20,
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-spices.jpg',
     description: 'Pure whole spices: Gundu & Neetu chillies, cardamom, cinnamon, cloves, cumin, black pepper, and star anise.',
     popularItems: ['Gundu Melagai', 'Cardamom', 'Cinnamon Patta', 'Black Pepper', 'Cumin (Seeragam)']
   },
@@ -30,7 +30,7 @@ export const CATEGORIES = [
     name: 'Spice Powders & Masalas', 
     tamilName: 'மசாலா தூள் வகைகள்', 
     count: 12,
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-masalas.jpg',
     description: 'Pure Salem turmeric powder, fresh dhaniya, red chilli powder, kulambu masala, chicken masala, and garam masala.',
     popularItems: ['Turmeric Powder', 'Chilli Powder', 'Dhaniya Powder', 'Chicken Masala', 'Garam Masala']
   },
@@ -39,7 +39,7 @@ export const CATEGORIES = [
     name: 'Edible Cooking Oils & Fats', 
     tamilName: 'சமையல் எண்ணெய்கள்', 
     count: 6,
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-oils.jpg',
     description: 'Factory-sealed oil boxes: Gold Winner refined oil, SVN Palmolein oil, commercial vanaspati, groundnut oil, and pure ghee.',
     popularItems: ['Gold Winner Refined Oil', 'SVN Palmolein Box', 'Vanaspati', 'Pure Cow Ghee']
   },
@@ -48,7 +48,7 @@ export const CATEGORIES = [
     name: 'Dry Fruits & Nuts', 
     tamilName: 'உலர் பழங்கள் & முந்திரி', 
     count: 4,
-    image: 'https://images.unsplash.com/photo-1536591375315-1b8368755776?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-dryfruits.jpg',
     description: 'Crisp whole W240 cashew nuts, sweet golden dry grapes, California badam almonds, and green cardamom.',
     popularItems: ['W240 Cashew Nut (Net)', 'Sweet Dry Grapes', 'Cardamom 100g', 'California Almonds']
   },
@@ -57,7 +57,7 @@ export const CATEGORIES = [
     name: 'Parcel & Packaging Materials', 
     tamilName: 'பார்சல் & பேக்கிங் பொருட்கள்', 
     count: 14,
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-packaging.jpg',
     description: 'Rigid aluminium food containers (250ml, 450ml, 750ml) with lids, bio cups, meal boxes, silver rolls, and butter sheets.',
     popularItems: ['Aluminium Containers (750ml/450ml/250ml)', 'Bio Cups', 'Silver Pouches', 'Butter Paper']
   },
@@ -66,7 +66,7 @@ export const CATEGORIES = [
     name: 'Hotel Sauces & Condiments', 
     tamilName: 'ஹோட்டல் சாஸ் வகைகள்', 
     count: 7,
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-condiments.jpg',
     description: 'Restaurant-grade culinary sauces: Tomato ketchup (1RS & 1L), red chilli sauce, dark soya sauce, vinegar, and ajinomoto.',
     popularItems: ['Tomato Ketchup 1L', 'Dark Soya Sauce 700ml', 'White Vinegar', 'Chilli Ketchup']
   },
@@ -75,7 +75,7 @@ export const CATEGORIES = [
     name: 'Stationery & Office Supplies', 
     tamilName: 'அலுவலக எழுதுபொருட்கள்', 
     count: 4,
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/categories/cat-stationery.jpg',
     description: 'Heavy-duty BOPP packaging tapes, duplicate billing books, permanent parcel markers, and stock ledgers.',
     popularItems: ['BOPP Packing Tapes', 'Carbon Billing Books', 'Parcel Markers', 'Stock Ledgers']
   }
@@ -90,7 +90,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 50kg Bags',
     unitWeight: '50kg Bag / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/sugar.jpg',
     description: 'Double-refined sparkling white cane sugar with rapid solubility. Ideal for hotels, tea stalls, and bakeries.',
     inStock: true,
     tanglishKeywords: 'sugar sarkkarai charkkarai chini m30'
@@ -102,7 +102,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 50kg Bags',
     unitWeight: '50kg Bag / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1627485937980-221c88ac04f9?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/maida.jpg',
     description: 'Smooth, high-elasticity wheat flour tailored for parottas, bakery items, and hotel tiffin preparation.',
     inStock: true,
     tanglishKeywords: 'maida maavu parotta flour all purpose flour'
@@ -114,7 +114,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 50kg Bags',
     unitWeight: '50kg Bag / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/atta.jpg',
     description: '100% stone-ground whole wheat atta. Yields tender, fluffy rotis and chapatis with high dietary fiber.',
     inStock: true,
     tanglishKeywords: 'atta godhumai maavu wheat flour chapati roti'
@@ -126,7 +126,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 30kg / 50kg Bags',
     unitWeight: '30kg / 50kg Bags',
-    image: 'https://images.unsplash.com/photo-1585994192701-512c19208035?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/orid-dal.jpg',
     description: 'Premium bold unpolished white urad gota. High fermentation volume for soft idlis and crispy medu vadas.',
     inStock: true,
     tanglishKeywords: 'orid dal urad dal ulundhu ulunthu gota vada batter idli'
@@ -138,7 +138,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 30kg / 50kg Bags',
     unitWeight: '30kg / 50kg Bags',
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/toor-dal.jpg',
     description: 'First-quality bold grain toor dal. Quick cooking with rich golden color, ideal for authentic hotel sambar.',
     inStock: true,
     tanglishKeywords: 'toor dal thuvaram paruppu tuvar dal sambar paruppu'
@@ -150,7 +150,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 30kg Bags',
     unitWeight: '30kg Bags',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/moong-dal.jpg',
     description: 'Double-cleaned yellow split moong dal. Easily digestible, essential for ven pongal, kootu, and payasam.',
     inStock: true,
     tanglishKeywords: 'moong dal paasi paruppu pasi parupu yellow lentil pongal'
@@ -162,7 +162,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 30kg / 50kg Bags',
     unitWeight: '30kg Bags',
-    image: 'https://images.unsplash.com/photo-1515942400420-2b98fed1f515?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/gram-dal.jpg',
     description: 'Polished hard golden chana dal. Essential for masala vadai, chutneys, and savory seasoning mixtures.',
     inStock: true,
     tanglishKeywords: 'gram dal chana dal kadalai paruppu masala vada'
@@ -174,7 +174,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1592394533824-9440e5d68530?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/green-peas.jpg',
     description: 'Uniform dried whole green peas for kurma, gravies, and restaurant snack preparation.',
     inStock: true,
     tanglishKeywords: 'green peas pachai pattani dry peas kurma'
@@ -186,7 +186,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1515942400420-2b98fed1f515?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/white-peas.jpg',
     description: 'High-grade white dry peas, widely utilized for sundal, street-style masala peas, and hotel gravies.',
     inStock: true,
     tanglishKeywords: 'white peas vellai pattani sundal peas'
@@ -198,7 +198,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 30kg Bags',
     unitWeight: '30kg Bags',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/odacha-kalla.jpg',
     description: 'Crisp roasted split chickpea kernels (pottukadalai). Indispensable for hotel coconut chutney and savory snacks.',
     inStock: true,
     tanglishKeywords: 'odacha kalla pottukadalai pottu kadalai roasted gram fried gram chutney'
@@ -210,7 +210,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1585994192701-512c19208035?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/vela-kallai.jpg',
     description: 'Bold white chickpeas with high swelling ratio upon soaking. Perfect for chole masala and temple sundal.',
     inStock: true,
     tanglishKeywords: 'vela kallai vellai kadalai kabuli chana chickpeas white chana sundal'
@@ -222,7 +222,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/double-beans.jpg',
     description: 'Large dried double beans for restaurant biryanis, rich vegetable kurma, and banquet catering.',
     inStock: true,
     tanglishKeywords: 'double beans lima beans kurma beans'
@@ -234,7 +234,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: 'Packs / Cartons',
     unitWeight: 'Retail & Bulk Cartons',
-    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/semiya.jpg',
     description: 'Fine wheat vermicelli that cooks without clumping. Ideal for semiya upma, kheer, and payasam.',
     inStock: true,
     tanglishKeywords: 'semiya vermicelli payasam upma സേമിയ'
@@ -246,7 +246,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '1kg / 50kg Bags',
     unitWeight: '50kg Bag / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1627485937980-221c88ac04f9?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/ravai.jpg',
     description: 'Even granular wheat semolina. Essential for crispy rava dosa, fluffy kesari, and morning upma.',
     inStock: true,
     tanglishKeywords: 'rava ravai sooji suji semolina kesari rava dosa'
@@ -258,7 +258,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '25kg & 50kg Sacks',
     unitWeight: '25kg / 50kg Bags',
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/ponni-rice.jpg',
     description: 'Aged 12+ months direct from delta mills. Maximum grain elongation and zero stickiness for meals.',
     inStock: true,
     tanglishKeywords: 'ponni boiled rice arisi arici thanjavur ponni saapadu'
@@ -270,7 +270,7 @@ export const PRODUCTS = [
     category: 'groceries',
     lotSize: '25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/groceries/basmati-rice.jpg',
     description: 'Extra-long grain 8.35mm aged basmati rice with distinctive aroma. Coveted by biryani masters.',
     inStock: true,
     tanglishKeywords: 'basmati rice biriyani rice briyani arisi 1121'
@@ -284,7 +284,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Sacks',
     unitWeight: '10kg / 25kg Sacks',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/gundu-melagai.jpg',
     description: 'Famous round South Indian red chillies with rich color and balanced heat. Essential for sambar and chettinad gravies.',
     inStock: true,
     tanglishKeywords: 'gundu melagai gundu milagai round chilli mundu chilli sambar milagai'
@@ -296,7 +296,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Sacks',
     unitWeight: '10kg / 25kg Sacks',
-    image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/neetu-melagai.jpg',
     description: 'Long pungent dried red chillies for tempering, grinding spicy chutneys, and red curry bases.',
     inStock: true,
     tanglishKeywords: 'neetu melagai neetu milagai long chilli teja s17 chilli'
@@ -308,7 +308,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Bags',
     unitWeight: '25kg Bags',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/cooriander.jpg',
     description: 'Aromatic green-gold coriander seeds. Cleaned with zero hollow husks for fresh grinding.',
     inStock: true,
     tanglishKeywords: 'cooriander coriander seeds dhaniya kothamalli vithai malli'
@@ -320,7 +320,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 30kg Bags',
     unitWeight: '10kg / 30kg Bags',
-    image: 'https://images.unsplash.com/photo-1599763784013-b5413123897f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/velam.jpg',
     description: 'Pure chemical-free golden brown jaggery. Unmatched sweetness and rich mineral profile for sweets and payasam.',
     inStock: true,
     tanglishKeywords: 'velam vellam jaggery nattu sakkarai bella gur'
@@ -332,7 +332,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Packs',
     unitWeight: '10kg / 25kg Packs',
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/puli.jpg',
     description: 'Fleshy, clean tamarind free from excess seeds and fibers. Tangy punch for rasam, sambar, and vatha kulambu.',
     inStock: true,
     tanglishKeywords: 'puli tamarind imli rasam puli country tamarind'
@@ -344,7 +344,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 5kg / 25kg Bags',
     unitWeight: '5kg / 25kg Bags',
-    image: 'https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/pundu.jpg',
     description: 'Aromatic, firm garlic cloves with pungent essential oils. Essential for biryani pastes, soups, and tadka.',
     inStock: true,
     tanglishKeywords: 'pundu poondu garlic lahsun lehsan garlic bulbs'
@@ -356,7 +356,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Bags',
     unitWeight: '10kg / 25kg Bags',
-    image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/seeragam.jpg',
     description: 'Unadulterated bold cumin seeds with strong earthy aroma. Cleaned and sortex graded.',
     inStock: true,
     tanglishKeywords: 'seeragam jeeragam jeera cumin seeds rasam jeera'
@@ -368,7 +368,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Bags',
     unitWeight: '10kg / 25kg Bags',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/sombu.jpg',
     description: 'Sweet, fragrant green fennel seeds. Crucial spice for non-veg curries, biryani tempering, and mukhwas.',
     inStock: true,
     tanglishKeywords: 'sombu perunjeeragam fennel seeds saunf'
@@ -380,7 +380,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Bags',
     unitWeight: '10kg / 25kg Bags',
-    image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/milagu.jpg',
     description: 'Whole bold garbled black pepper. High piperine kick for pongal, pepper chicken, and herbal rasam.',
     inStock: true,
     tanglishKeywords: 'milagu black pepper kali mirch kurunthotti pepper'
@@ -392,7 +392,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg Bags',
     unitWeight: '10kg Bags',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/venthayem.jpg',
     description: 'Hard, glossy amber fenugreek seeds for idli batter rise, fish curry, and pickles.',
     inStock: true,
     tanglishKeywords: 'venthayem vendhayam methi seeds fenugreek'
@@ -404,7 +404,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 10kg / 25kg Bags',
     unitWeight: '10kg / 25kg Bags',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/kadugu.jpg',
     description: 'Tiny black mustard seeds with crackling aroma on tempering. Core seasoning for all South Indian cooking.',
     inStock: true,
     tanglishKeywords: 'kadugu mustard seeds rai sarson tadka'
@@ -416,7 +416,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 1kg / 10kg Packs',
     unitWeight: '100g / 1kg Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/patta.jpg',
     description: 'Natural dried aromatic cinnamon bark pieces for biryani, pulao, and garam masala blending.',
     inStock: true,
     tanglishKeywords: 'patta pattai cinnamon dalchini'
@@ -428,7 +428,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 1kg Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/surul-pattu.jpg',
     description: 'Thin delicate quill cinnamon rolls. Delicate sweetness and subtle floral aroma for high-end banquets.',
     inStock: true,
     tanglishKeywords: 'surul pattu surul pattai ceylon cinnamon roll'
@@ -440,7 +440,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 1kg Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/karambu.jpg',
     description: 'Whole intact clove buds with crown. High eugenol essential oil content for fragrant gravies and biryani.',
     inStock: true,
     tanglishKeywords: 'karambu kirambu lavangam cloves laung'
@@ -452,7 +452,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 1kg Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/biriyani-ela.jpg',
     description: 'Sun-dried broad bay leaves with rich herbal scent for dum biryani and kurma seasoning.',
     inStock: true,
     tanglishKeywords: 'biriyani ela biryani ilai bay leaf tej patta'
@@ -464,7 +464,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 1kg Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/anachi-poo.jpg',
     description: 'Whole unbroken eight-pointed star anise pods. Sweet licorice aroma signature to Tamil banquet biryanis.',
     inStock: true,
     tanglishKeywords: 'anachi poo annasi poo star anise chakra phool'
@@ -476,7 +476,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/marathi-mooku.jpg',
     description: 'Dried flower buds of kapok tree. Gives quintessential aroma to Chettinad non-veg dishes and bisi bele bath.',
     inStock: true,
     tanglishKeywords: 'marathi mooku marati mokku kapok buds chettinad spice'
@@ -488,7 +488,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/kasthuri-methi.jpg',
     description: 'Crisp green fragrant dried methi leaves for garnishing butter chicken, paneer gravies, and restaurant curries.',
     inStock: true,
     tanglishKeywords: 'kasthuri methi kasuri methi dried methi leaves'
@@ -500,7 +500,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/kasa-kasa.jpg',
     description: 'Tiny ivory poppy seeds. Imparts nutty creaminess and rich thickening to mutton kurma, gravies, and payasam.',
     inStock: true,
     tanglishKeywords: 'kasa kasa khas khas khus khus poppy seeds'
@@ -512,7 +512,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/kalpasi.jpg',
     description: 'Traditional lichen spice giving earthy smoky depth to Biryani masala and Chettinad dishes.',
     inStock: true,
     tanglishKeywords: 'kalpasi kal paasi stone flower dagad phool chettinad'
@@ -524,7 +524,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1536591375315-1b8368755776?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/rose-petels.jpg',
     description: 'Natural dried aromatic rose petals used in biryani garnishing, royal sweets, and herbal sharbats.',
     inStock: true,
     tanglishKeywords: 'rose petels rose petals roja ithazh gulaab patti'
@@ -536,7 +536,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/jathi-pathiri.jpg',
     description: 'Golden-orange mace arils enveloping nutmeg. Subtle warm spiciness for wedding dum biryani recipes.',
     inStock: true,
     tanglishKeywords: 'jathi pathiri jaathipathiri mace javitri'
@@ -548,7 +548,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 50kg Bags',
     unitWeight: '50kg Bag / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/salt-fine.jpg',
     description: 'Free-flowing iodized white table salt for daily cooking, baking, and hotel dining tables.',
     inStock: true,
     tanglishKeywords: 'salt thool uppu iodized salt table salt'
@@ -560,7 +560,7 @@ export const PRODUCTS = [
     category: 'spices',
     lotSize: '1kg / 25kg / 50kg Bags',
     unitWeight: '50kg Bags',
-    image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/spices/rock-salt.jpg',
     description: 'Natural crystal sea salt from coastal salt pans. Preferred by traditional cooks for sambar, rasam, and pickles.',
     inStock: true,
     tanglishKeywords: 'rock salt kal uppu crystal salt sea salt'
@@ -574,7 +574,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '50g / 100g / 500g / 1kg / 25kg',
     unitWeight: 'Packs & Bulk Bags',
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/turmeric-powder.jpg',
     description: 'High-curcumin double-polished Salem turmeric powder. Deep golden yellow hue, lab-certified pure.',
     inStock: true,
     tanglishKeywords: 'turmeric powder manjal thool haldi powder'
@@ -586,7 +586,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 500g / 1kg Packs',
     unitWeight: '100g / 500g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/kulambu-melagai-thul.jpg',
     description: 'Authentic traditional South Indian curry powder blended with roasted lentils and spices for rich gravies.',
     inStock: true,
     tanglishKeywords: 'kulambu melagai thul kulambu milagai thool curry powder'
@@ -598,7 +598,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '50g / 100g / 500g / 1kg Packs',
     unitWeight: '50g / 100g / 500g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/thani-melagai-thul.jpg',
     description: '100% pure ground red chillies without adulterants or artificial food color. Fiery heat and natural crimson tone.',
     inStock: true,
     tanglishKeywords: 'thani melagai thul thani milagai thool plain chilli powder lal mirch'
@@ -610,7 +610,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g / 500g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/chicken-masala.jpg',
     description: 'Spice blend with coriander, pepper, clove, and cinnamon for aromatic chicken gravy and fry.',
     inStock: true,
     tanglishKeywords: 'chicken masala kozhi masala chicken curry powder'
@@ -622,7 +622,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 200g / 500g / 1kg',
     unitWeight: '100g / 200g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/dhaniya-powder.jpg',
     description: 'Freshly ground coriander powder imparting rich body and soothing herbal flavor to all gravies.',
     inStock: true,
     tanglishKeywords: 'dhaniya powder malli thool kothamalli thool'
@@ -634,7 +634,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g / 500g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/garam-masala.jpg',
     description: 'Warm roasted whole spices blend (cloves, cardamom, cinnamon, mace) for finishing curries and biryanis.',
     inStock: true,
     tanglishKeywords: 'garam masala biryani masala all spice powder'
@@ -646,7 +646,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/kashmiri-chilli-powder.jpg',
     description: 'Mild heat with brilliant natural deep crimson color. Imparts appetizing restaurant glow to gravies.',
     inStock: true,
     tanglishKeywords: 'kashmiri chilli powder kashmiri mirch color chilli'
@@ -658,7 +658,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '100g / 500g Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/idli-chilli-powder.jpg',
     description: 'Roasted lentils and red chillies podi mixed with sesame oil or ghee for hot idlis and dosas.',
     inStock: true,
     tanglishKeywords: 'idli chilli powder idli podi gun powder dosai podi'
@@ -670,7 +670,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '50g / 500g Packs',
     unitWeight: '50g Packs',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/chicken-65-masala.jpg',
     description: 'Crispy, tangy marinade spice powder for restaurant-style Chicken 65, Gobi 65, and Paneer 65.',
     inStock: true,
     tanglishKeywords: 'chicken 65 masala gobi 65 fry masala'
@@ -682,7 +682,7 @@ export const PRODUCTS = [
     category: 'masalas',
     lotSize: '500g / 1kg Packs',
     unitWeight: '500g Packs',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/masalas/mutton-masala.jpg',
     description: 'Rich robust spice blend for mutton chukka, succulent meat gravies, and village feast curries.',
     inStock: true,
     tanglishKeywords: 'mutton masala aattu kari masala meat masala chukka'
@@ -696,7 +696,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: '1 Box (Pouches) / 15L Tin',
     unitWeight: '1 Box / 15L Tin',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/gold-winner-oil.jpg',
     description: 'Trusted refined sunflower oil. High smoke point, light, and absorbs less oil during commercial frying.',
     inStock: true,
     tanglishKeywords: 'gold winner refined oil sunflower oil 1box cooking oil'
@@ -708,7 +708,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: '1 Box (Commercial Packs)',
     unitWeight: '1 Box Commercial Pack',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/svn-palmolein-oil.jpg',
     description: 'Economy commercial cooking oil widely preferred for large-scale frying, snacks, and catering kitchens.',
     inStock: true,
     tanglishKeywords: 'svn palmolein oil palmoil palm oil 1box hotel oil'
@@ -720,7 +720,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: 'Tins / Cartons',
     unitWeight: '15L Tin / 1kg Pack',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/vanaspati.jpg',
     description: 'Cooking medium ensuring flaky texture for parottas, samosas, and traditional bakery delicacies.',
     inStock: true,
     tanglishKeywords: 'vanaspati dalda parotta fat bakery ghee'
@@ -732,7 +732,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: '15L Tin / 5L Jar',
     unitWeight: '15L Sealed Tin',
-    image: 'https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/groundnut-oil.jpg',
     description: 'Aromatic wood-pressed groundnut oil. Authentic earthy taste and rich flavor for wedding sweets and savories.',
     inStock: true,
     tanglishKeywords: 'groundnut oil chekku kadalai ennai peanut oil'
@@ -744,7 +744,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: '15L Tin / 5L Can',
     unitWeight: '15L Sealed Tin',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/sesame-oil.jpg',
     description: 'Traditional wood-pressed gingelly oil infused with palm jaggery. Indispensable for vatha kulambu and pickles.',
     inStock: true,
     tanglishKeywords: 'sesame oil gingelly oil nallennai nalla ennai til oil'
@@ -756,7 +756,7 @@ export const PRODUCTS = [
     category: 'oils',
     lotSize: '15kg Tin / 1L Jar',
     unitWeight: '15kg Tin',
-    image: 'https://images.unsplash.com/photo-1599763784013-b5413123897f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/oils/pure-ghee.jpg',
     description: 'Granular, aromatic pure cow ghee. Golden richness for banquet sweets, biryani finishing, and temple pongal.',
     inStock: true,
     tanglishKeywords: 'ghee nei pasu nei cow ghee desi ghee'
@@ -770,7 +770,7 @@ export const PRODUCTS = [
     category: 'dryfruits',
     lotSize: '10kg Tin / 1kg Pack',
     unitWeight: '10kg Tin / Vacuum Pack',
-    image: 'https://images.unsplash.com/photo-1536591375315-1b8368755776?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/dryfruits/cashew-net.jpg',
     description: 'King-sized W240/W320 whole white cashew nuts. Sweet buttery crunch for wedding payasam, halwa, and biryani.',
     inStock: true,
     tanglishKeywords: 'cashew net cashew nut munthiri paruppu kaju'
@@ -782,7 +782,7 @@ export const PRODUCTS = [
     category: 'dryfruits',
     lotSize: '10kg Box / 1kg Pack',
     unitWeight: '10kg Box',
-    image: 'https://images.unsplash.com/photo-1599763784013-b5413123897f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/dryfruits/dry-grapes.jpg',
     description: 'Seedless golden sweet raisins. Plump and naturally dried, ideal for garnishing ghee rice, sweets, and dessert.',
     inStock: true,
     tanglishKeywords: 'dry grapes ular thiratchai kishmish kismis raisins'
@@ -794,7 +794,7 @@ export const PRODUCTS = [
     category: 'dryfruits',
     lotSize: '100g / 1kg Packs',
     unitWeight: '100g Packs',
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/dryfruits/cardamom-100g.jpg',
     description: 'Bold 7mm/8mm green cardamom pods bursting with fragrant black seeds for sweets, tea, and biryani.',
     inStock: true,
     tanglishKeywords: 'cardamom 100g yelakkai elakkai elaichi green cardamom'
@@ -806,7 +806,7 @@ export const PRODUCTS = [
     category: 'dryfruits',
     lotSize: '10kg Box / 1kg Pack',
     unitWeight: '10kg Box',
-    image: 'https://images.unsplash.com/photo-1508061252227-091ac5bf2591?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/dryfruits/almonds-whole.jpg',
     description: 'Grade-A crunchy whole almonds for badam milk, banquet sweets, and commercial catering dessert preparation.',
     inStock: true,
     tanglishKeywords: 'almonds badam padam california badam nuts'
@@ -820,7 +820,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '100 pcs Pack / Cartons',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/aluminium-container-250.jpg',
     description: 'Food-grade leak-proof aluminum foil meal containers for gravy, side dishes, and hotel take-aways.',
     inStock: true,
     tanglishKeywords: 'aluminium container 250ml foil box parcel container'
@@ -832,7 +832,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '100 pcs Pack',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/aluminium-container-450.jpg',
     description: 'Medium size aluminum container ideal for single-portion meals, fried rice, and biryani parcels.',
     inStock: true,
     tanglishKeywords: 'aluminium container 450ml meal parcel foil'
@@ -844,7 +844,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '100 pcs Pack',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/aluminium-container-750.jpg',
     description: 'Large family-size aluminum containers for dum biryani, noodles, and bulk takeaway orders.',
     inStock: true,
     tanglishKeywords: 'aluminium container 750ml large biryani parcel box'
@@ -856,7 +856,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '100 pcs Packs',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/gray-lids.jpg',
     description: 'Sturdy laminated foil board gray lids fitting 250ml, 450ml, and 750ml containers to lock in heat.',
     inStock: true,
     tanglishKeywords: 'gray lid container moodi foil lid 250ml 450ml 750ml'
@@ -868,7 +868,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '1kg Packs',
     unitWeight: '1kg Pack',
-    image: 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/silver-sheets.jpg',
     description: 'Moisture-resistant food-grade silver wrapping sheets for parottas, dosas, chapatis, and fast food parcels.',
     inStock: true,
     tanglishKeywords: 'silver sheet 12x12 14x14 parotta wrap paper parcel sheet'
@@ -880,7 +880,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: 'Packs of 100 pcs',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/bio-cups.jpg',
     description: 'Eco-friendly biodegradable beverage cups for tea, coffee, juices, and water serving at events.',
     inStock: true,
     tanglishKeywords: 'bio compostable cup paper cup tea cup 90ml 110ml 250ml'
@@ -892,7 +892,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: 'Pieces / Bundles',
     unitWeight: 'Bundles',
-    image: 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/rectangle-meal-box.jpg',
     description: 'Microwaveable transparent takeaway meal boxes with tight clip-on lids for restaurant delivery.',
     inStock: true,
     tanglishKeywords: 'rectangle 750ml b+t m+t meal box plastic box'
@@ -904,7 +904,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: 'Pieces / Bundles',
     unitWeight: 'Bundles',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/bowl-container.jpg',
     description: 'Round leak-proof container bowls for gravies, raita, sambar, and sweet desserts.',
     inStock: true,
     tanglishKeywords: 'bowl 500ml m+t gravy bowl soup container'
@@ -916,7 +916,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '1kg Packs',
     unitWeight: '1kg Pack',
-    image: 'https://images.unsplash.com/photo-1607349913338-fca6f742960f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/silver-pouches.jpg',
     description: 'Multi-layer heat-sealable silver barrier pouches for packing spices, sambar powder, dry fruits, and snacks.',
     inStock: true,
     tanglishKeywords: 'silver pouch 4*6 5*7 6*9 8*10 cover packing pouch'
@@ -928,7 +928,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '1kg Packs',
     unitWeight: '1kg Pack',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/transparent-covers.jpg',
     description: 'High-clarity virgin transparent polythene food bags for chutney, sauce, and small food portions.',
     inStock: true,
     tanglishKeywords: 'transparent 4*6 plastic cover chutney cover'
@@ -940,7 +940,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '100 pcs Packs',
     unitWeight: '100 pcs / Pack',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/spoons-cutlery.jpg',
     description: 'Heavy-duty food-grade plastic spoons for banquet dining, hotel parcels, and dessert catering.',
     inStock: true,
     tanglishKeywords: 'royal spoon metro spoon white spoon plastic cutlery'
@@ -952,7 +952,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: 'Packets',
     unitWeight: '10 pcs Pack',
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/tooth-pick.jpg',
     description: 'Individually paper-wrapped bamboo toothpicks for hotel bill desks and banquet counters.',
     inStock: true,
     tanglishKeywords: 'tooth pick toothpick hotel counter picks'
@@ -964,7 +964,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '1kg Rolls',
     unitWeight: '1kg Roll',
-    image: 'https://images.unsplash.com/photo-1589365278144-c9e705f843ba?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/table-paper-roll.jpg',
     description: 'Clean absorbent white table paper rolls for dining tables and restaurant plate lining.',
     inStock: true,
     tanglishKeywords: 'table paper roll hotel paper dining roll'
@@ -976,7 +976,7 @@ export const PRODUCTS = [
     category: 'packaging',
     lotSize: '1kg / Bundles',
     unitWeight: '1kg Bundles',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/packaging/butter-sheet.jpg',
     description: 'High heat resistant non-stick butter paper sheets for wrapping shawarmas, sandwiches, dosas, and parottas.',
     inStock: true,
     tanglishKeywords: 'butter sheet 10x10 12x12 14x14 greaseproof paper'
@@ -990,7 +990,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: 'Boxes / Bundles',
     unitWeight: 'Boxes of Sachets',
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/tomato-ketchup-sachet.jpg',
     description: 'Individual portion ketchup sachets for takeaway snacks, burgers, fried chicken, and samosas.',
     inStock: true,
     tanglishKeywords: 'tomato ketchup 1rs sachet hotel parcel sauce'
@@ -1002,7 +1002,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: '1L Bottles / Cartons',
     unitWeight: '1L Bottle',
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/tomato-ketchup-1l.jpg',
     description: 'Rich thick sweet-tangy tomato sauce for kitchen cooking and table dispensers.',
     inStock: true,
     tanglishKeywords: 'tomato ketchup 1l sauce bottle red sauce'
@@ -1014,7 +1014,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: 'Boxes of Sachets',
     unitWeight: 'Boxes',
-    image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/chilli-ketchup-1rs.jpg',
     description: 'Punchy spicy green/red chilli ketchup pouches for takeaway fast food parcels.',
     inStock: true,
     tanglishKeywords: 'chilli ketchup 1rs chilli sauce sachet'
@@ -1026,7 +1026,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: '1L Bottles',
     unitWeight: '1L Bottle',
-    image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/chilli-ketchup-1l.jpg',
     description: 'Spicy restaurant condiment sauce for Chinese fast food, fried rice, and noodles.',
     inStock: true,
     tanglishKeywords: 'chilli ketchup 1l bottle hot chilli sauce'
@@ -1038,7 +1038,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: '700ml Bottles',
     unitWeight: '700ml Bottle',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/dark-soya-sauce.jpg',
     description: 'Rich deep dark brewed soya sauce providing color and umami taste for Indo-Chinese restaurant kitchens.',
     inStock: true,
     tanglishKeywords: 'dark soya 700ml soya sauce chinese sauce'
@@ -1050,7 +1050,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: 'Bottles / Jars',
     unitWeight: 'Bottles',
-    image: 'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/vinegar.jpg',
     description: 'Clear white vinegar for marination, Chinese cooking, pickling, and kitchen sanitization.',
     inStock: true,
     tanglishKeywords: 'vinegar vinigar white vinegar sirka'
@@ -1062,7 +1062,7 @@ export const PRODUCTS = [
     category: 'condiments',
     lotSize: '500g Packs / 25kg Bags',
     unitWeight: '500g Packs',
-    image: 'https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/condiments/mono-sodium.jpg',
     description: 'Crystalline savory flavor enhancer (MSG / Ajinomoto) for Indo-Chinese fried rice and fast food recipes.',
     inStock: true,
     tanglishKeywords: 'mono sodium 500g ajinomoto tasting salt msg'
@@ -1076,7 +1076,7 @@ export const PRODUCTS = [
     category: 'stationery',
     lotSize: 'Packs of 10 / 50 Books',
     unitWeight: '10 Books Pack',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/stationery/billing-books.jpg',
     description: 'Pre-numbered 2-copy and 3-copy delivery challan and invoice books for shops, hotels, and retail counters.',
     inStock: true,
     tanglishKeywords: 'billing books receipt book bill book challan book'
@@ -1088,7 +1088,7 @@ export const PRODUCTS = [
     category: 'stationery',
     lotSize: 'Tubes of 6 / Cartons of 72 Rolls',
     unitWeight: '6 Rolls Pack',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/stationery/parcel-tapes.jpg',
     description: 'High-tack self-adhesive sealing tapes for carton packing, courier boxes, and parcel security.',
     inStock: true,
     tanglishKeywords: 'parcel tapes bopp tape brown tape cello tape packing tape'
@@ -1100,7 +1100,7 @@ export const PRODUCTS = [
     category: 'stationery',
     lotSize: 'Boxes of 10 / 50 pcs',
     unitWeight: '10 pcs Box',
-    image: 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/stationery/parcel-markers.jpg',
     description: 'Quick-drying waterproof black/blue markers for bold labeling on carton boxes, gunny sacks, and pouches.',
     inStock: true,
     tanglishKeywords: 'parcel markers marker pen sketch permanent marker'
@@ -1112,7 +1112,7 @@ export const PRODUCTS = [
     category: 'stationery',
     lotSize: 'Bundles of 5 Registers',
     unitWeight: '5 Registers Pack',
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
+    image: '/images/products/stationery/ledger-registers.jpg',
     description: 'Hardbound ledger books and inventory registers for accurate stock tracking and daily business accounting.',
     inStock: true,
     tanglishKeywords: 'ledger registers account note stock book'
